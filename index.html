@@ -186,9 +186,9 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
 
     <h4>Logaritmiche</h4>
     <p>Sono le <strong>inverse delle funzioni esponenziali</strong>:</p>
-    <div class="formula">f(x) = log_a x,  con a &gt; 0 e a ≠ 1</div>
+    <div class="formula">f(x) = log<sub>a</sub> x,  con a &gt; 0 e a ≠ 1</div>
     <p>Il logaritmo in base <em>e</em> si indica con <em>ln</em> (logaritmo naturale).</p>
-    <div class="ex"><b>Esempi:</b> f(x) = log₂ x; g(x) = ln x; h(x) = log(x − 1).</div>
+    <div class="ex"><b>Esempi:</b> f(x) = log<sub>2</sub> x; g(x) = ln x; h(x) = log(x − 1).</div>
 
     <div class="warn">⚠️ Attenzione: una costante irrazionale come √2 non rende irrazionale la funzione; e 3ˣ (esponenziale) è ben diverso da x³ (potenza, razionale intera). Conta <em>dove</em> compare la variabile.</div>
     <div class="tip">📌 Riconoscere il tipo di funzione è il primo passo: orienta tutte le scelte successive, dal calcolo del dominio fino allo studio della derivata.</div>
@@ -223,10 +223,10 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
     <h2>Funzioni trascendenti e dominio</h2>
     <ul>
       <li><strong>Esponenziale</strong> aˣ: definita su tutto ℝ. Per aᵍ⁽ˣ⁾ il dominio coincide con quello dell'esponente g(x).</li>
-      <li><strong>Logaritmica</strong> log_a A(x): l'argomento deve essere <strong>strettamente positivo</strong>, A(x) &gt; 0.</li>
+      <li><strong>Logaritmica</strong> log<sub>a</sub> A(x): l'argomento deve essere <strong>strettamente positivo</strong>, A(x) &gt; 0.</li>
       <li><strong>Goniometriche</strong>: sin x e cos x sono definite su ℝ; <em>tan x</em> non è definita dove cos x = 0, cioè per x = π/2 + kπ.</li>
     </ul>
-    <div class="formula">f(x) = log_a A(x) ⇒ A(x) &gt; 0</div>
+    <div class="formula">f(x) = log<sub>a</sub> A(x) ⇒ A(x) &gt; 0</div>
     <div class="ex"><b>Es.</b> f(x) = ln(x − 3) ⇒ x − 3 &gt; 0 ⇒ Dom = (3, +∞).</div>
     <h3>Funzioni miste</h3>
     <p>Si impongono <strong>tutte</strong> le condizioni contemporaneamente, formando un sistema.</p>
@@ -266,7 +266,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
       <li><strong>cos x</strong> è pari: cos(−x) = cos x.</li>
       <li><strong>tan x</strong> è dispari: tan(−x) = −tan x.</li>
       <li><strong>Esponenziale</strong> aˣ è né pari né dispari: essendo sempre positiva non può coincidere con −f(x).</li>
-      <li>Per <strong>log_a x</strong> le simmetrie non si studiano: il dominio (0, +∞) non è simmetrico rispetto a 0.</li>
+      <li>Per <strong>log<sub>a</sub> x</strong> le simmetrie non si studiano: il dominio (0, +∞) non è simmetrico rispetto a 0.</li>
     </ul>
     <div class="tip">📌 Se la funzione è pari o dispari, è sufficiente studiarla per x ≥ 0 e poi simmetrizzare il grafico — risparmio di lavoro.</div>
   </div>
@@ -300,7 +300,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
     <h2>Intersezioni delle funzioni trascendenti</h2>
     <ul>
       <li><strong>Esponenziale</strong> aˣ: interseca l'asse y in (0, 1), perché a⁰ = 1; non ha zeri, perché aˣ &gt; 0 per ogni x.</li>
-      <li><strong>Logaritmica</strong> log_a x: ha uno zero in x = 1 (log_a 1 = 0); non interseca l'asse y, perché 0 non appartiene al dominio.</li>
+      <li><strong>Logaritmica</strong> log<sub>a</sub> x: ha uno zero in x = 1 (log<sub>a</sub> 1 = 0); non interseca l'asse y, perché 0 non appartiene al dominio.</li>
       <li><strong>sin x</strong>: zeri in x = kπ; interseca l'asse y in (0, 0).</li>
       <li><strong>cos x</strong>: zeri in x = π/2 + kπ; interseca l'asse y in (0, 1).</li>
     </ul>
@@ -340,7 +340,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
     <h2>Segno delle funzioni trascendenti</h2>
     <ul>
       <li><strong>Esponenziale</strong> aˣ: sempre positiva (aˣ &gt; 0), non ha zeri.</li>
-      <li><strong>Logaritmica</strong> log_a x con a &gt; 1: positiva per x &gt; 1, negativa per 0 &lt; x &lt; 1, nulla in x = 1.</li>
+      <li><strong>Logaritmica</strong> log<sub>a</sub> x con a &gt; 1: positiva per x &gt; 1, negativa per 0 &lt; x &lt; 1, nulla in x = 1.</li>
       <li><strong>sin x</strong>: positiva in (0, π) e nei suoi traslati di 2π.</li>
       <li><strong>cos x</strong>: positiva in (−π/2, π/2) e nei suoi traslati di 2π.</li>
     </ul>
@@ -404,7 +404,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
       <tr><td>xⁿ</td><td>n·xⁿ⁻¹</td><td>cos x</td><td>−sin x</td></tr>
       <tr><td>√x</td><td>1/(2√x)</td><td>tan x</td><td>1/cos²x</td></tr>
       <tr><td>eˣ</td><td>eˣ</td><td>ln x</td><td>1/x</td></tr>
-      <tr><td>aˣ</td><td>aˣ·ln a</td><td>log_a x</td><td>1/(x·ln a)</td></tr>
+      <tr><td>aˣ</td><td>aˣ·ln a</td><td>log<sub>a</sub> x</td><td>1/(x·ln a)</td></tr>
     </table>
 
     <h3>Regole di derivazione</h3>
@@ -476,11 +476,11 @@ nomi:{
    opts:['alla base della potenza','all\'esponente della potenza','sotto radice','come argomento di un logaritmo'],ans:1,
    exp:'Forma aˣ: la base a è costante, la variabile è l\'esponente.'},
   {q:'La forma generale di una funzione esponenziale è:',
-   opts:['f(x) = xᵃ','f(x) = aˣ con a &gt; 0 e a ≠ 1','f(x) = a·x','f(x) = log_a x'],ans:1,
+   opts:['f(x) = xᵃ','f(x) = aˣ con a &gt; 0 e a ≠ 1','f(x) = a·x','f(x) = log<sub>a</sub> x'],ans:1,
    exp:'La base deve essere positiva e diversa da 1, altrimenti la funzione non è ben definita o è costante.'},
-  {q:'La funzione logaritmica f(x) = log_a x è:',
+  {q:'La funzione logaritmica f(x) = log<sub>a</sub> x è:',
    opts:['l\'inversa della funzione esponenziale','un polinomio','una funzione razionale fratta','l\'inversa del seno'],ans:0,
-   exp:'log_a x e aˣ sono funzioni inverse l\'una dell\'altra.'},
+   exp:'log<sub>a</sub> x e aˣ sono funzioni inverse l\'una dell\'altra.'},
   {q:'Il logaritmo naturale ln x ha base:',
    opts:['10','2','il numero e ≈ 2,718','1'],ans:2,
    exp:'ln è il logaritmo in base e (numero di Nepero).'},
@@ -531,7 +531,7 @@ nomi:{
   {q:'Classifica f(x) = 2ˣ.',
    opts:['razionale intera','esponenziale','logaritmica','goniometrica'],ans:1,
    exp:'La variabile è all\'esponente di una base costante: esponenziale.'},
-  {q:'Classifica f(x) = log₃ x.',
+  {q:'Classifica f(x) = log<sub>3</sub> x.',
    opts:['esponenziale','logaritmica','irrazionale','razionale fratta'],ans:1,
    exp:'Logaritmo in base 3: funzione logaritmica.'},
   {q:'Classifica f(x) = sin x.',
@@ -616,7 +616,7 @@ dom:{
   {q:'Qual è il dominio di una funzione esponenziale aˣ?',
    opts:['x &gt; 0','ℝ','x ≠ 0','x ≥ 0'],ans:1,
    exp:'L\'esponenziale è definita per ogni numero reale: Dom = ℝ.'},
-  {q:'Per una funzione logaritmica log_a A(x) si impone:',
+  {q:'Per una funzione logaritmica log<sub>a</sub> A(x) si impone:',
    opts:['A(x) ≥ 0','A(x) &gt; 0','A(x) ≠ 0','A(x) &lt; 0'],ans:1,
    exp:'L\'argomento del logaritmo deve essere STRETTAMENTE positivo: A(x) &gt; 0.'},
   {q:'Qual è il dominio delle funzioni sin x e cos x?',
@@ -636,7 +636,7 @@ dom:{
    exp:'L\'argomento x² + 1 è sempre &gt; 0, quindi nessun valore va escluso: Dom = ℝ.'},
   {q:'L\'argomento di un logaritmo può valere 0?',
    opts:['Sì, sempre','No, deve essere strettamente positivo','Solo se la base è e','Solo se è minore di 1'],ans:1,
-   exp:'log_a 0 non esiste: l\'argomento deve essere &gt; 0, lo zero è escluso.'},
+   exp:'log<sub>a</sub> 0 non esiste: l\'argomento deve essere &gt; 0, lo zero è escluso.'},
   {q:'Una funzione esponenziale non pone condizioni di esistenza perché:',
    opts:['aˣ è definita per ogni x reale','aˣ è sempre positiva','è periodica','ha un asintoto'],ans:0,
    exp:'Il dominio dell\'esponenziale è tutto ℝ: nessun valore va escluso.'},
@@ -865,10 +865,10 @@ int:{
   {q:'Una funzione esponenziale aˣ interseca l\'asse x:',
    opts:['in (0, 0)','in un solo punto','mai, perché aˣ &gt; 0','in infiniti punti'],ans:2,
    exp:'L\'esponenziale è sempre positiva: non si annulla mai, quindi nessuno zero.'},
-  {q:'La funzione logaritmica log_a x interseca l\'asse x in:',
+  {q:'La funzione logaritmica log<sub>a</sub> x interseca l\'asse x in:',
    opts:['(1, 0)','(0, 1)','(0, 0)','(a, 0)'],ans:0,
-   exp:'log_a 1 = 0 per ogni base: lo zero del logaritmo è x = 1.'},
-  {q:'La funzione log_a x interseca l\'asse y:',
+   exp:'log<sub>a</sub> 1 = 0 per ogni base: lo zero del logaritmo è x = 1.'},
+  {q:'La funzione log<sub>a</sub> x interseca l\'asse y:',
    opts:['in (0, 1)','in (0, 0)','mai, perché 0 non è nel dominio','in (1, 0)'],ans:2,
    exp:'Il dominio del logaritmo è (0, +∞): 0 è escluso, niente intersezione con l\'asse y.'},
   {q:'La funzione sin x interseca l\'asse y in:',
@@ -948,9 +948,9 @@ int:{
   {q:'f(x) = ln x − 1. Qual è lo zero?',
    opts:['x = 1','x = e','x = 0','x = 10'],ans:1,
    exp:'ln x − 1 = 0 ⇒ ln x = 1 ⇒ x = e.'},
-  {q:'f(x) = log₂ x. Qual è lo zero?',
+  {q:'f(x) = log<sub>2</sub> x. Qual è lo zero?',
    opts:['x = 1','x = 2','x = 0','x = 1/2'],ans:0,
-   exp:'log₂ x = 0 ⇒ x = 2⁰ = 1.'},
+   exp:'log<sub>2</sub> x = 0 ⇒ x = 2⁰ = 1.'},
   {q:'f(x) = eˣ + 1. Zeri?',
    opts:['x = 0','x = −1','nessuno, perché eˣ + 1 &gt; 0 sempre','x = 1'],ans:2,
    exp:'eˣ &gt; 0 ⇒ eˣ + 1 &gt; 1: la funzione non si annulla mai.'},
@@ -1000,9 +1000,9 @@ seg:{
   {q:'La funzione ln x è negativa per:',
    opts:['x &gt; 1','0 &lt; x &lt; 1','x &lt; 0','mai'],ans:1,
    exp:'Per argomenti compresi tra 0 e 1 il logaritmo è negativo.'},
-  {q:'La funzione log_a x (con a &gt; 1) si annulla in:',
+  {q:'La funzione log<sub>a</sub> x (con a &gt; 1) si annulla in:',
    opts:['x = 1','x = 0','x = a','x = e'],ans:0,
-   exp:'log_a 1 = 0 per ogni base.'},
+   exp:'log<sub>a</sub> 1 = 0 per ogni base.'},
   {q:'La funzione sin x è positiva:',
    opts:['nell\'intervallo (0, π) e nei traslati di 2π','sempre','solo per x &gt; 0','mai'],ans:0,
    exp:'Il seno è positivo nel primo e secondo "quadrante", cioè in (0, π) + 2kπ.'},
@@ -1261,9 +1261,9 @@ der:{
   {q:'La derivata di aˣ è:',
    opts:['aˣ','aˣ·ln a','x·aˣ⁻¹','aˣ/x'],ans:1,
    exp:'D(aˣ) = aˣ·ln a; per a = e si riduce a eˣ.'},
-  {q:'La derivata di log_a x è:',
-   opts:['1/(x·ln a)','1/x','ln a / x','log_a x'],ans:0,
-   exp:'D(log_a x) = 1/(x·ln a); per a = e si riduce a 1/x.'},
+  {q:'La derivata di log<sub>a</sub> x è:',
+   opts:['1/(x·ln a)','1/x','ln a / x','log<sub>a</sub> x'],ans:0,
+   exp:'D(log<sub>a</sub> x) = 1/(x·ln a); per a = e si riduce a 1/x.'},
   {q:'La funzione eˣ ha la proprietà notevole che:',
    opts:['coincide con la sua derivata','ha derivata nulla','è periodica','non è derivabile'],ans:0,
    exp:'D(eˣ) = eˣ: è l\'unica funzione (a meno di costanti) con questa proprietà.'},
