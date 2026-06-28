@@ -5,11 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#00695c">
 <title>Studio di funzioni</title>
+<script>/* tema: applica subito per evitare flash */(function(){try{var t=localStorage.getItem('theme');if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
 :root{
   --bg:#f4f8f7;--surface:#fff;--primary:#00695c;--primary-d:#004d40;--accent:#ef6c00;
   --text:#152226;--muted:#566570;--border:#cfd8d4;--shadow:0 2px 6px rgba(0,0,0,.08);
 }
+[data-theme="dark"]{
+  --bg:#0e1a18;--surface:#162422;--primary:#4db6ac;--primary-d:#26a69a;--accent:#ffb74d;
+  --text:#dff0ec;--muted:#7fa89e;--border:#244240;--shadow:0 2px 6px rgba(0,0,0,.35);
+}
+[data-theme="dark"] .formula{background:#162e2a}
+[data-theme="dark"] .tip{background:#142018;border-color:#4caf50;color:#a5d6a7}
+[data-theme="dark"] .warn{background:#252010;border-color:#fbc02d;color:#ffe082}
+[data-theme="dark"] .ex{background:#2a2010;color:#ffcc80}
+[data-theme="dark"] table.tbl th{background:#162e2a}
+[data-theme="dark"] .qz-tab{background:#162e2a;color:var(--muted)}
+[data-theme="dark"] .qz-tab.active{background:var(--primary);color:#fff}
+[data-theme="dark"] .quiz-bar-wrap{background:#1e3530}
+[data-theme="dark"] .quiz-btn{background:#162e2a;color:var(--text)}
+[data-theme="dark"] .quiz-btn:not(:disabled):hover{background:#1e3d38;border-color:var(--primary)}
+[data-theme="dark"] .quiz-review.alt{background:#162e2a;color:#4db6ac}
+[data-theme="dark"] .quiz-review.alt:hover{background:#1e3530}
+[data-theme="dark"] .rv-item{background:#162422}
+[data-theme="dark"] .quiz-exp.ok{background:#142018;border-color:#388e3c;color:#a5d6a7}
+[data-theme="dark"] .quiz-exp.no{background:#2a1414;border-color:#c62828;color:#ef9a9a}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
@@ -105,9 +125,12 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
 </style>
 </head>
 <body>
-<header>
-  <h1>📈 Studio di funzioni</h1>
-  <div class="sub">Teoria e quiz interattivi</div>
+<header style="display:flex;align-items:center;gap:.7rem">
+  <div style="flex:1;min-width:0">
+    <h1>📈 Studio di funzioni</h1>
+    <div class="sub">Teoria e quiz interattivi</div>
+  </div>
+  <button id="theme-btn" onclick="toggleTheme()" aria-label="Cambia tema" style="background:none;border:1.5px solid rgba(255,255,255,.45);border-radius:8px;color:#fff;cursor:pointer;font-size:1.1em;padding:.25rem .55rem;flex-shrink:0;line-height:1.3">🌙</button>
 </header>
 <nav class="main" id="mainNav">
   <button data-tab="home" class="active">🏠 Home</button>
@@ -1459,6 +1482,17 @@ function closeReview(s){
 }
 
 SECTIONS.forEach(renderQuiz);
+
+/* ============ TEMA ============ */
+function toggleTheme(){
+  const html=document.documentElement;
+  const next=html.getAttribute('data-theme')==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  try{localStorage.setItem('theme',next);}catch(e){}
+  const btn=document.getElementById('theme-btn');
+  if(btn) btn.textContent=next==='dark'?'☀️':'🌙';
+}
+(function(){const btn=document.getElementById('theme-btn');if(btn)btn.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';})();
 </script>
 </body>
 </html>
