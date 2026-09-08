@@ -5,21 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#00695c">
 <title>Studio di funzioni</title>
+<meta name="color-scheme" content="light dark">
+<script>(function(){try{var t=localStorage.getItem('sf-theme');if(!t&&window.matchMedia)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#f4f8f7;--surface:#fff;--primary:#00695c;--primary-d:#004d40;--accent:#ef6c00;
   --text:#152226;--muted:#566570;--border:#cfd8d4;--shadow:0 2px 6px rgba(0,0,0,.08);
+  --font-head:"Fraunces",Georgia,serif;color-scheme:light;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
   font-size:clamp(15px,2.4vw,17px);line-height:1.55}
 header{background:linear-gradient(135deg,var(--primary),var(--primary-d));color:#fff;
-  padding:.85rem 1rem;box-shadow:var(--shadow);position:sticky;top:0;z-index:10}
-header h1{margin:0;font-size:clamp(1.15rem,4.5vw,1.55rem)}
+  padding:.85rem 3.2rem .85rem 1rem;box-shadow:var(--shadow);position:relative;z-index:10}
+.theme-btn{position:absolute;top:.7rem;right:.8rem;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.18);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.theme-btn:hover{background:rgba(255,255,255,.32)}
+.theme-btn svg{width:18px;height:18px}
+header h1{margin:0;font-family:var(--font-head);font-size:clamp(1.15rem,4.5vw,1.55rem)}
 header .sub{font-size:.85em;opacity:.85}
 nav.main{background:var(--surface);display:flex;overflow-x:auto;
-  border-bottom:1px solid var(--border);position:sticky;z-index:5;
+  border-bottom:1px solid var(--border);position:static;z-index:5;
   scrollbar-width:thin}
 nav.main button{flex:0 0 auto;background:none;border:0;padding:.85rem 1rem;
   font-size:.95em;color:var(--muted);border-bottom:3px solid transparent;
@@ -30,7 +39,7 @@ section.scene{display:none}
 section.scene.active{display:block}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;
   padding:1rem;margin-bottom:1rem;box-shadow:var(--shadow)}
-.card h2{margin-top:0;color:var(--primary-d);font-size:1.15em}
+.card h2{margin-top:0;font-family:var(--font-head);color:var(--primary-d);font-size:1.15em}
 .card h3{margin:.85rem 0 .35rem;color:var(--primary-d);font-size:1em}
 .card h4{margin:.7rem 0 .25rem;color:var(--primary-d);font-size:.95em}
 .formula{background:#e8f1ef;border-left:3px solid var(--primary);
@@ -73,11 +82,11 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
   font-family:inherit;color:var(--text);line-height:1.35;transition:background .12s,border-color .12s}
 .quiz-btn:not(:disabled):hover{background:#dbe8e4;border-color:var(--primary)}
 .quiz-btn:disabled{cursor:default}
-.quiz-btn.correct{background:#c8e6c9!important;border-color:#388e3c!important;color:#1b5e20;font-weight:600}
-.quiz-btn.wrong{background:#ffcdd2!important;border-color:#c62828!important;color:#b71c1c}
+.quiz-btn.correct{background:#e7f0fa!important;border-color:#1d70bf!important;color:#12467e;font-weight:600}
+.quiz-btn.wrong{background:#faf0e3!important;border-color:#c9752a!important;color:#7a4713}
 .quiz-exp{padding:.55rem .85rem;border-radius:8px;font-size:.86em;line-height:1.5;margin:.45rem 0}
-.quiz-exp.ok{background:#e8f5e9;border-left:3px solid #388e3c;color:#1b5e20}
-.quiz-exp.no{background:#ffebee;border-left:3px solid #c62828;color:#b71c1c}
+.quiz-exp.ok{background:#e7f0fa;border-left:3px solid #1d70bf;color:#12467e}
+.quiz-exp.no{background:#faf0e3;border-left:3px solid #c9752a;color:#7a4713}
 .quiz-next{background:var(--primary);color:#fff;border:0;border-radius:8px;
   padding:.48rem 1.1rem;font-size:.88em;cursor:pointer;font-family:inherit;margin-top:.25rem}
 .quiz-next:hover{background:var(--primary-d)}
@@ -91,29 +100,76 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
 .quiz-review.alt{background:#f0f4f3;color:var(--primary-d);border:1.5px solid var(--primary)}
 .quiz-review.alt:hover{background:#dbe8e4}
 .rv-item{border:1px solid var(--border);border-radius:8px;padding:.6rem .8rem;margin:.5rem 0;background:#fafcfb}
-.rv-item.ok{border-left:4px solid #388e3c}
-.rv-item.no{border-left:4px solid #c62828}
+.rv-item.ok{border-left:4px solid #1d70bf}
+.rv-item.no{border-left:4px solid #c9752a}
 .rv-q{font-weight:600;font-size:.93em;margin-bottom:.3rem}
 .rv-line{font-size:.85em;margin:.1rem 0;color:var(--muted)}
-.rv-line b.ok{color:#1b5e20}
-.rv-line b.no{color:#b71c1c}
+.rv-line b.ok{color:#12467e}
+.rv-line b.no{color:#7a4713}
 .rv-exp{font-size:.83em;color:var(--text);margin-top:.3rem;font-style:italic}
+
+/* ===== Dark mode ===== */
+html[data-theme="dark"]{--bg:#0f1714;--surface:#16211d;--primary:#4db6a4;--primary-d:#7fd1c1;--accent:#ffa64d;--text:#e2ece9;--muted:#93a5a0;--border:#2a3a35;--shadow:0 2px 6px rgba(0,0,0,.4);color-scheme:dark}
+html[data-theme="dark"] .formula{background:#14231f}
+html[data-theme="dark"] .tip{background:#142a1c;border-left-color:#4caf72;color:#a5d6b0}
+html[data-theme="dark"] .warn{background:#2a2410;border-left-color:#e0b44d;color:#e8cf8a}
+html[data-theme="dark"] .ex{background:#2a2010;color:#ffcc99}
+html[data-theme="dark"] table.tbl th{background:#14231f}
+html[data-theme="dark"] .qz-tab{background:#1c2926}
+html[data-theme="dark"] .quiz-btn{background:#1c2926}
+html[data-theme="dark"] .quiz-btn:not(:disabled):hover{background:#24332e}
+html[data-theme="dark"] .quiz-bar-wrap{background:#24332e}
+html[data-theme="dark"] .rv-item{background:#16211d}
+html[data-theme="dark"] .quiz-review.alt{background:#1c2926}
+html[data-theme="dark"] .quiz-review.alt:hover{background:#24332e}
+html[data-theme="dark"] .quiz-btn.correct{background:#15273a!important;border-color:#6aa9f0!important;color:#bcd6ff}
+html[data-theme="dark"] .quiz-btn.wrong{background:#2a2010!important;border-color:#ffa64d!important;color:#ffcc80}
+html[data-theme="dark"] .quiz-exp.ok{background:#15273a;border-left-color:#6aa9f0;color:#bcd6ff}
+html[data-theme="dark"] .quiz-exp.no{background:#2a2010;border-left-color:#ffa64d;color:#ffcc80}
+html[data-theme="dark"] .rv-item.ok{border-left-color:#6aa9f0}
+html[data-theme="dark"] .rv-item.no{border-left-color:#ffa64d}
+html[data-theme="dark"] .rv-line b.ok{color:#bcd6ff}
+html[data-theme="dark"] .rv-line b.no{color:#ffcc80}
+@media(prefers-color-scheme:dark){
+  html:not([data-theme="light"]){--bg:#0f1714;--surface:#16211d;--primary:#4db6a4;--primary-d:#7fd1c1;--accent:#ffa64d;--text:#e2ece9;--muted:#93a5a0;--border:#2a3a35;--shadow:0 2px 6px rgba(0,0,0,.4);color-scheme:dark}
+  html:not([data-theme="light"]) .formula{background:#14231f}
+  html:not([data-theme="light"]) .tip{background:#142a1c;border-left-color:#4caf72;color:#a5d6b0}
+  html:not([data-theme="light"]) .warn{background:#2a2410;border-left-color:#e0b44d;color:#e8cf8a}
+  html:not([data-theme="light"]) .ex{background:#2a2010;color:#ffcc99}
+  html:not([data-theme="light"]) table.tbl th{background:#14231f}
+  html:not([data-theme="light"]) .qz-tab{background:#1c2926}
+  html:not([data-theme="light"]) .quiz-btn{background:#1c2926}
+  html:not([data-theme="light"]) .quiz-btn:not(:disabled):hover{background:#24332e}
+  html:not([data-theme="light"]) .quiz-bar-wrap{background:#24332e}
+  html:not([data-theme="light"]) .rv-item{background:#16211d}
+  html:not([data-theme="light"]) .quiz-review.alt{background:#1c2926}
+  html:not([data-theme="light"]) .quiz-review.alt:hover{background:#24332e}
+  html:not([data-theme="light"]) .quiz-btn.correct{background:#15273a!important;border-color:#6aa9f0!important;color:#bcd6ff}
+  html:not([data-theme="light"]) .quiz-btn.wrong{background:#2a2010!important;border-color:#ffa64d!important;color:#ffcc80}
+  html:not([data-theme="light"]) .quiz-exp.ok{background:#15273a;border-left-color:#6aa9f0;color:#bcd6ff}
+  html:not([data-theme="light"]) .quiz-exp.no{background:#2a2010;border-left-color:#ffa64d;color:#ffcc80}
+  html:not([data-theme="light"]) .rv-item.ok{border-left-color:#6aa9f0}
+  html:not([data-theme="light"]) .rv-item.no{border-left-color:#ffa64d}
+  html:not([data-theme="light"]) .rv-line b.ok{color:#bcd6ff}
+  html:not([data-theme="light"]) .rv-line b.no{color:#ffcc80}
+}
 </style>
 </head>
 <body>
 <header>
-  <h1>📈 Studio di funzioni</h1>
+  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Cambia tema" title="Tema chiaro / scuro"></button>
+  <h1>Studio di funzioni</h1>
   <div class="sub">Teoria e quiz interattivi</div>
 </header>
-<nav class="main" id="mainNav">
-  <button data-tab="home" class="active">🏠 Home</button>
-  <button data-tab="nomi">🏷️ Tipi di funzione</button>
-  <button data-tab="dom">📐 Dominio</button>
-  <button data-tab="sim">🪞 Simmetrie</button>
-  <button data-tab="int">✖️ Intersezioni</button>
-  <button data-tab="seg">± Segno</button>
-  <button data-tab="lim">∞ Limiti & asintoti</button>
-  <button data-tab="der">📈 Derivata I</button>
+<nav class="main" id="mainNav" role="tablist">
+  <button data-tab="home" class="active" role="tab" aria-selected="true">Home</button>
+  <button data-tab="nomi" role="tab" aria-selected="false">Tipi di funzione</button>
+  <button data-tab="dom" role="tab" aria-selected="false">Dominio</button>
+  <button data-tab="sim" role="tab" aria-selected="false">Simmetrie</button>
+  <button data-tab="int" role="tab" aria-selected="false">Intersezioni</button>
+  <button data-tab="seg" role="tab" aria-selected="false">± Segno</button>
+  <button data-tab="lim" role="tab" aria-selected="false">∞ Limiti & asintoti</button>
+  <button data-tab="der" role="tab" aria-selected="false">Derivata I</button>
 </nav>
 <main>
 
@@ -126,23 +182,23 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
       <li><strong>trascendenti</strong>: goniometriche, esponenziali, logaritmiche</li>
     </ul>
     <p>Per ogni argomento ci sono <strong>due quiz da 20 domande</strong>: uno di <em>teoria</em> e uno di <em>calcolo</em>, con barra di avanzamento, feedback immediato e revisione finale delle risposte.</p>
-    <div class="tip">💡 Consiglio: studia la teoria, prova il quiz di teoria per verificare la comprensione, poi affronta il quiz di calcolo per allenarti.</div>
+    <div class="tip">Consiglio: studia la teoria, prova il quiz di teoria per verificare la comprensione, poi affronta il quiz di calcolo per allenarti.</div>
   </div>
   <div class="home-grid">
-    <button class="home-card" data-go="nomi"><span class="ico">🏷️</span><strong>1. Tipi di funzione</strong><span>Funzioni algebriche e trascendenti</span></button>
-    <button class="home-card" data-go="dom"><span class="ico">📐</span><strong>2. Dominio</strong><span>Insieme di esistenza di f(x)</span></button>
-    <button class="home-card" data-go="sim"><span class="ico">🪞</span><strong>3. Simmetrie</strong><span>Funzioni pari e dispari</span></button>
-    <button class="home-card" data-go="int"><span class="ico">✖️</span><strong>4. Intersezioni con gli assi</strong><span>x = 0 e f(x) = 0</span></button>
+    <button class="home-card" data-go="nomi"><span class="ico"></span><strong>1. Tipi di funzione</strong><span>Funzioni algebriche e trascendenti</span></button>
+    <button class="home-card" data-go="dom"><span class="ico"></span><strong>2. Dominio</strong><span>Insieme di esistenza di f(x)</span></button>
+    <button class="home-card" data-go="sim"><span class="ico"></span><strong>3. Simmetrie</strong><span>Funzioni pari e dispari</span></button>
+    <button class="home-card" data-go="int"><span class="ico"></span><strong>4. Intersezioni con gli assi</strong><span>x = 0 e f(x) = 0</span></button>
     <button class="home-card" data-go="seg"><span class="ico">±</span><strong>5. Studio del segno</strong><span>Dove f(x) &gt; 0 e f(x) &lt; 0</span></button>
     <button class="home-card" data-go="lim"><span class="ico">∞</span><strong>6. Limiti &amp; asintoti</strong><span>Orizzontali, verticali, obliqui, discontinuità</span></button>
-    <button class="home-card" data-go="der"><span class="ico">📈</span><strong>7. Derivata I</strong><span>Massimo, minimo, flesso a tangente orizz.</span></button>
+    <button class="home-card" data-go="der"><span class="ico"></span><strong>7. Derivata I</strong><span>Massimo, minimo, flesso a tangente orizz.</span></button>
   </div>
 </section>
 
 <!-- =================== TIPI DI FUNZIONE =================== -->
 <section class="scene" id="nomi">
   <div class="card">
-    <h2>🏷️ I tipi di funzione</h2>
+    <h2>I tipi di funzione</h2>
     <p>Le funzioni reali si dividono in due grandi famiglie. Le <strong>funzioni algebriche</strong> si ottengono dalla variabile <em>x</em> mediante un numero finito di somme, prodotti, quozienti, potenze ed estrazioni di radice. Le <strong>funzioni trascendenti</strong> non sono algebriche: comprendono goniometriche, esponenziali e logaritmiche.</p>
 
     <h3>Funzioni algebriche</h3>
@@ -181,8 +237,8 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
     <p>Il logaritmo in base <em>e</em> si indica con <em>ln</em> (logaritmo naturale).</p>
     <div class="ex"><b>Esempi:</b> f(x) = log₂ x; g(x) = ln x; h(x) = log(x − 1).</div>
 
-    <div class="warn">⚠️ Attenzione: una costante irrazionale come √2 non rende irrazionale la funzione; e 3ˣ (esponenziale) è ben diverso da x³ (potenza, razionale intera). Conta <em>dove</em> compare la variabile.</div>
-    <div class="tip">📌 Riconoscere il tipo di funzione è il primo passo: orienta tutte le scelte successive, dal calcolo del dominio fino allo studio della derivata.</div>
+    <div class="warn">Attenzione: una costante irrazionale come √2 non rende irrazionale la funzione; e 3ˣ (esponenziale) è ben diverso da x³ (potenza, razionale intera). Conta <em>dove</em> compare la variabile.</div>
+    <div class="tip">Riconoscere il tipo di funzione è il primo passo: orienta tutte le scelte successive, dal calcolo del dominio fino allo studio della derivata.</div>
   </div>
   <div id="qz-nomi"></div>
 </section>
@@ -190,7 +246,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
 <!-- =================== DOMINIO =================== -->
 <section class="scene" id="dom">
   <div class="card">
-    <h2>📐 Dominio della funzione</h2>
+    <h2>Dominio della funzione</h2>
     <p>Il <strong>dominio</strong> (o campo di esistenza) di una funzione è l'insieme dei numeri reali per cui l'espressione f(x) ha senso. Si ricava imponendo le condizioni di esistenza per ciascuna operazione presente.</p>
 
     <h3>Razionali intere</h3>
@@ -222,7 +278,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
     <h3>Funzioni miste</h3>
     <p>Si impongono <strong>tutte</strong> le condizioni contemporaneamente, formando un sistema.</p>
     <div class="ex"><b>Es.</b> f(x) = √(x−1)/(x−3) ⇒ {x − 1 ≥ 0 e x − 3 ≠ 0} ⇒ x ≥ 1 ∧ x ≠ 3 ⇒ [1, 3) ∪ (3, +∞).</div>
-    <div class="tip">📌 Il dominio si scrive sempre come unione di intervalli, oppure come ℝ tolti alcuni punti.</div>
+    <div class="tip">Il dominio si scrive sempre come unione di intervalli, oppure come ℝ tolti alcuni punti.</div>
   </div>
   <div id="qz-dom"></div>
 </section>
@@ -230,7 +286,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
 <!-- =================== SIMMETRIE =================== -->
 <section class="scene" id="sim">
   <div class="card">
-    <h2>🪞 Simmetrie della funzione</h2>
+    <h2>Simmetrie della funzione</h2>
     <p>Lo studio delle simmetrie si fa <strong>solo se il dominio è simmetrico rispetto allo zero</strong>: ovvero se <em>x ∈ Dom ⇒ −x ∈ Dom</em>. In caso contrario, la verifica f(−x) = f(x) o f(−x) = −f(x) non può essere applicata a tutto il dominio.</p>
 
     <h3>Funzione pari</h3>
@@ -259,7 +315,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
       <li><strong>Esponenziale</strong> aˣ è né pari né dispari: essendo sempre positiva non può coincidere con −f(x).</li>
       <li>Per <strong>log_a x</strong> le simmetrie non si studiano: il dominio (0, +∞) non è simmetrico rispetto a 0.</li>
     </ul>
-    <div class="tip">📌 Se la funzione è pari o dispari, è sufficiente studiarla per x ≥ 0 e poi simmetrizzare il grafico — risparmio di lavoro.</div>
+    <div class="tip">Se la funzione è pari o dispari, è sufficiente studiarla per x ≥ 0 e poi simmetrizzare il grafico — risparmio di lavoro.</div>
   </div>
   <div id="qz-sim"></div>
 </section>
@@ -267,7 +323,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
 <!-- =================== INTERSEZIONI =================== -->
 <section class="scene" id="int">
   <div class="card">
-    <h2>✖️ Intersezioni con gli assi</h2>
+    <h2>Intersezioni con gli assi</h2>
     <p>Le intersezioni del grafico con gli assi cartesiani si trovano con due semplici procedimenti.</p>
 
     <h3>Intersezione con l'asse y</h3>
@@ -295,7 +351,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
       <li><strong>sin x</strong>: zeri in x = kπ; interseca l'asse y in (0, 0).</li>
       <li><strong>cos x</strong>: zeri in x = π/2 + kπ; interseca l'asse y in (0, 1).</li>
     </ul>
-    <div class="tip">📌 Gli zeri della funzione coincidono con le intersezioni con l'asse x e sono fondamentali per lo studio del segno.</div>
+    <div class="tip">Gli zeri della funzione coincidono con le intersezioni con l'asse x e sono fondamentali per lo studio del segno.</div>
   </div>
   <div id="qz-int"></div>
 </section>
@@ -335,7 +391,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
       <li><strong>sin x</strong>: positiva in (0, π) e nei suoi traslati di 2π.</li>
       <li><strong>cos x</strong>: positiva in (−π/2, π/2) e nei suoi traslati di 2π.</li>
     </ul>
-    <div class="tip">📌 Costruire una <em>tabella dei segni</em> con una linea per ciascun fattore e una riga finale per f(x) rende lo studio meccanico e poco soggetto a errori.</div>
+    <div class="tip">Costruire una <em>tabella dei segni</em> con una linea per ciascun fattore e una riga finale per f(x) rende lo studio meccanico e poco soggetto a errori.</div>
   </div>
   <div id="qz-seg"></div>
 </section>
@@ -357,7 +413,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
     <h3>Asintoto obliquo</h3>
     <p>Esiste <strong>solo se non c'è</strong> asintoto orizzontale da quel lato:</p>
     <div class="formula">m = lim<sub>x→±∞</sub> f(x)/x   ·   q = lim<sub>x→±∞</sub> (f(x) − mx)</div>
-    <div class="warn">⚠️ Per le razionali fratte c'è asintoto obliquo solo quando grado(P) = grado(Q) + 1.</div>
+    <div class="warn">Per le razionali fratte c'è asintoto obliquo solo quando grado(P) = grado(Q) + 1.</div>
 
     <h3>Classificazione dei punti di discontinuità</h3>
     <ul>
@@ -374,7 +430,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
       <li><strong>tan x</strong>: ha asintoti verticali in x = π/2 + kπ.</li>
       <li><strong>sin x</strong> e <strong>cos x</strong>: non hanno limite per x → ±∞ (oscillano).</li>
     </ul>
-    <div class="tip">📌 Per x → +∞ l'esponenziale eˣ cresce più rapidamente di qualsiasi potenza xⁿ; a sua volta xⁿ cresce più del logaritmo ln x.</div>
+    <div class="tip">Per x → +∞ l'esponenziale eˣ cresce più rapidamente di qualsiasi potenza xⁿ; a sua volta xⁿ cresce più del logaritmo ln x.</div>
   </div>
   <div id="qz-lim"></div>
 </section>
@@ -382,7 +438,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
 <!-- =================== DERIVATA =================== -->
 <section class="scene" id="der">
   <div class="card">
-    <h2>📈 Derivata prima: monotonia ed estremi</h2>
+    <h2>Derivata prima: monotonia ed estremi</h2>
     <p>La <strong>derivata prima</strong> f'(x) misura la pendenza della retta tangente al grafico nel punto (x, f(x)). Permette di stabilire dove f cresce, dove decresce e dove ha massimi, minimi o flessi a tangente orizzontale.</p>
 
     <h3>Definizione</h3>
@@ -418,7 +474,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
     </ul>
     <div class="ex"><b>Es.</b> f(x) = x³ − 3x. f'(x) = 3x² − 3 = 0 ⇒ x = ±1. f' è + per |x|&gt;1, − per |x|&lt;1: x = −1 massimo, x = 1 minimo.</div>
     <div class="ex"><b>Es. flesso:</b> f(x) = x³. f'(x) = 3x² ≥ 0, si annulla in x = 0 senza cambiare segno ⇒ flesso a tangente orizzontale in (0, 0).</div>
-    <div class="tip">📌 Una funzione notevole: eˣ coincide con la propria derivata, D(eˣ) = eˣ.</div>
+    <div class="tip">Una funzione notevole: eˣ coincide con la propria derivata, D(eˣ) = eˣ.</div>
   </div>
   <div id="qz-der"></div>
 </section>
@@ -430,7 +486,7 @@ table.tbl th{background:#e8f1ef;color:var(--primary-d)}
 const tabs=document.querySelectorAll('nav.main button');
 const scenes=document.querySelectorAll('section.scene');
 function show(id){
-  tabs.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+  tabs.forEach(b=>{var on=b.dataset.tab===id;b.classList.toggle('active',on);b.setAttribute('aria-selected',on?'true':'false');});
   scenes.forEach(s=>s.classList.toggle('active',s.id===id));
   window.scrollTo({top:0,behavior:'instant'});
 }
@@ -452,25 +508,25 @@ nomi:{
    opts:['somma, prodotto, quoziente, potenza e radice','solo seno, coseno e tangente','solo logaritmi','solo esponenziali'],ans:0,
    exp:'Le algebriche usano un numero finito di operazioni elementari, radici incluse. Goniometriche, esponenziali e logaritmiche non rientrano.'},
   {q:'Goniometriche, esponenziali e logaritmiche si dicono complessivamente:',
-   opts:['funzioni algebriche','funzioni trascendenti','funzioni razionali','funzioni intere'],ans:1,
+   opts:['funzioni trascendenti','funzioni algebriche','funzioni razionali','funzioni intere'],ans:0,
    exp:'Non sono ottenibili con sole operazioni algebriche: per questo si chiamano trascendenti.'},
   {q:'Una funzione razionale intera è:',
-   opts:['un polinomio nella variabile x','un rapporto di due polinomi','una funzione con radici della x','una potenza con esponente variabile'],ans:0,
+   opts:['un rapporto di due polinomi','una funzione con radici della x','un polinomio nella variabile x','una potenza con esponente variabile'],ans:2,
    exp:'È un polinomio aₙxⁿ + … + a₀: niente divisioni per espressioni in x, niente radici della variabile.'},
   {q:'Una funzione razionale fratta è:',
-   opts:['un polinomio','il rapporto di due polinomi con denominatore non costante','una radice di un polinomio','un logaritmo di un polinomio'],ans:1,
+   opts:['un polinomio','una radice di un polinomio','un logaritmo di un polinomio','il rapporto di due polinomi con denominatore non costante'],ans:3,
    exp:'Forma P(x)/Q(x) con Q polinomio di grado ≥ 1.'},
   {q:'Una funzione si dice irrazionale quando:',
-   opts:['contiene una costante come √2','la variabile x compare sotto una radice','ha esponente intero','è periodica'],ans:1,
+   opts:['contiene una costante come √2','ha esponente intero','è periodica','la variabile x compare sotto una radice'],ans:3,
    exp:'Conta la presenza della variabile sotto radice; una radice puramente numerica non rende irrazionale la funzione.'},
   {q:'In una funzione esponenziale la variabile x si trova:',
-   opts:['alla base della potenza','all\'esponente della potenza','sotto radice','come argomento di un logaritmo'],ans:1,
+   opts:['alla base della potenza','sotto radice','come argomento di un logaritmo','all\'esponente della potenza'],ans:3,
    exp:'Forma aˣ: la base a è costante, la variabile è l\'esponente.'},
   {q:'La forma generale di una funzione esponenziale è:',
-   opts:['f(x) = xᵃ','f(x) = aˣ con a &gt; 0 e a ≠ 1','f(x) = a·x','f(x) = log_a x'],ans:1,
+   opts:['f(x) = xᵃ','f(x) = a·x','f(x) = aˣ con a &gt; 0 e a ≠ 1','f(x) = log_a x'],ans:2,
    exp:'La base deve essere positiva e diversa da 1, altrimenti la funzione non è ben definita o è costante.'},
   {q:'La funzione logaritmica f(x) = log_a x è:',
-   opts:['l\'inversa della funzione esponenziale','un polinomio','una funzione razionale fratta','l\'inversa del seno'],ans:0,
+   opts:['un polinomio','una funzione razionale fratta','l\'inversa del seno','l\'inversa della funzione esponenziale'],ans:3,
    exp:'log_a x e aˣ sono funzioni inverse l\'una dell\'altra.'},
   {q:'Il logaritmo naturale ln x ha base:',
    opts:['10','2','il numero e ≈ 2,718','1'],ans:2,
@@ -479,93 +535,93 @@ nomi:{
    opts:['π','2π','π/2','non sono periodiche'],ans:1,
    exp:'sin x e cos x si ripetono identiche ogni 2π.'},
   {q:'La funzione tangente è definita come:',
-   opts:['cos x / sin x','sin x · cos x','sin x / cos x','sin x + cos x'],ans:2,
+   opts:['cos x / sin x','sin x · cos x','sin x + cos x','sin x / cos x'],ans:3,
    exp:'tan x = sin x / cos x; non è definita dove cos x = 0.'},
   {q:'La funzione tangente ha periodo:',
    opts:['π','2π','π/2','4π'],ans:0,
    exp:'A differenza di seno e coseno, la tangente si ripete ogni π.'},
   {q:'Una razionale fratta P/Q si dice "propria" quando:',
-   opts:['grado(P) &lt; grado(Q)','grado(P) &gt; grado(Q)','grado(P) = grado(Q)','Q è costante'],ans:0,
+   opts:['grado(P) &gt; grado(Q)','grado(P) = grado(Q)','Q è costante','grado(P) &lt; grado(Q)'],ans:3,
    exp:'Per analogia con le frazioni numeriche: il numeratore ha grado minore del denominatore.'},
   {q:'Per il dominio di una funzione irrazionale è cruciale distinguere:',
-   opts:['l\'indice della radice pari o dispari','il segno del coefficiente','il grado del radicando','la base della potenza'],ans:0,
+   opts:['il segno del coefficiente','il grado del radicando','l\'indice della radice pari o dispari','la base della potenza'],ans:2,
    exp:'Indice pari ⇒ radicando ≥ 0; indice dispari ⇒ radicando libero.'},
   {q:'La funzione costante f(x) = 5 è classificata come:',
-   opts:['razionale intera (polinomio di grado 0)','esponenziale','logaritmica','irrazionale'],ans:0,
+   opts:['esponenziale','logaritmica','irrazionale','razionale intera (polinomio di grado 0)'],ans:3,
    exp:'Una costante è un polinomio di grado 0.'},
   {q:'Le espressioni 3ˣ e x³ differiscono perché:',
-   opts:['sono identiche','in 3ˣ la x è all\'esponente, in x³ è la base','x³ è trascendente','3ˣ è un polinomio'],ans:1,
+   opts:['sono identiche','x³ è trascendente','in 3ˣ la x è all\'esponente, in x³ è la base','3ˣ è un polinomio'],ans:2,
    exp:'3ˣ è una funzione esponenziale (trascendente); x³ è una potenza, cioè una razionale intera.'},
   {q:'Una funzione esponenziale aˣ con a &gt; 1 è:',
    opts:['crescente','decrescente','costante','periodica'],ans:0,
    exp:'Con base maggiore di 1 l\'esponenziale cresce al crescere di x.'},
   {q:'Una funzione esponenziale aˣ con 0 &lt; a &lt; 1 è:',
-   opts:['crescente','decrescente','costante','periodica'],ans:1,
+   opts:['crescente','costante','periodica','decrescente'],ans:3,
    exp:'Con base compresa tra 0 e 1 l\'esponenziale decresce al crescere di x.'},
   {q:'La funzione f(x) = x² + sin x è:',
-   opts:['una funzione algebrica','una funzione trascendente, perché contiene sin x','una razionale fratta','una funzione costante'],ans:1,
+   opts:['una funzione algebrica','una razionale fratta','una funzione trascendente, perché contiene sin x','una funzione costante'],ans:2,
    exp:'La presenza di sin x rende l\'intera funzione trascendente.'},
   {q:'Tra le seguenti, l\'unica funzione algebrica è:',
-   opts:['f(x) = 2ˣ','f(x) = log x','f(x) = √(x + 1)','f(x) = cos x'],ans:2,
+   opts:['f(x) = 2ˣ','f(x) = log x','f(x) = cos x','f(x) = √(x + 1)'],ans:3,
    exp:'La radice è un\'operazione algebrica: √(x+1) è irrazionale, quindi algebrica. Le altre tre sono trascendenti.'}
  ],
  calcolo:[
   {q:'Classifica f(x) = 3x⁴ − 2x + 7.',
-   opts:['razionale intera','razionale fratta','esponenziale','goniometrica'],ans:0,
+   opts:['razionale fratta','esponenziale','goniometrica','razionale intera'],ans:3,
    exp:'È un polinomio di grado 4.'},
   {q:'Classifica f(x) = (x³ − 1)/(x² + 2).',
-   opts:['razionale intera','razionale fratta','irrazionale','logaritmica'],ans:1,
+   opts:['razionale intera','irrazionale','razionale fratta','logaritmica'],ans:2,
    exp:'Rapporto di due polinomi con denominatore non costante: razionale fratta.'},
   {q:'Classifica f(x) = √(x² − 9).',
-   opts:['razionale intera','razionale fratta','irrazionale','esponenziale'],ans:2,
+   opts:['irrazionale','razionale intera','razionale fratta','esponenziale'],ans:0,
    exp:'La variabile compare sotto radice quadrata: irrazionale.'},
   {q:'Classifica f(x) = 2ˣ.',
-   opts:['razionale intera','esponenziale','logaritmica','goniometrica'],ans:1,
+   opts:['razionale intera','logaritmica','goniometrica','esponenziale'],ans:3,
    exp:'La variabile è all\'esponente di una base costante: esponenziale.'},
   {q:'Classifica f(x) = log₃ x.',
-   opts:['esponenziale','logaritmica','irrazionale','razionale fratta'],ans:1,
+   opts:['esponenziale','irrazionale','logaritmica','razionale fratta'],ans:2,
    exp:'Logaritmo in base 3: funzione logaritmica.'},
   {q:'Classifica f(x) = sin x.',
-   opts:['goniometrica','esponenziale','razionale intera','logaritmica'],ans:0,
+   opts:['esponenziale','razionale intera','goniometrica','logaritmica'],ans:2,
    exp:'Funzione circolare: goniometrica.'},
   {q:'Classifica f(x) = ln(x − 1).',
-   opts:['razionale fratta','logaritmica','irrazionale','esponenziale'],ans:1,
+   opts:['razionale fratta','irrazionale','esponenziale','logaritmica'],ans:3,
    exp:'Logaritmo naturale di un\'espressione in x: logaritmica (composta).'},
   {q:'Classifica f(x) = e^(2x).',
-   opts:['esponenziale','logaritmica','razionale intera','goniometrica'],ans:0,
+   opts:['logaritmica','razionale intera','esponenziale','goniometrica'],ans:2,
    exp:'Base e con esponente 2x: esponenziale.'},
   {q:'Classifica f(x) = tan x.',
    opts:['razionale fratta','goniometrica','irrazionale','esponenziale'],ans:1,
    exp:'È una funzione circolare: goniometrica.'},
   {q:'Classifica f(x) = (x − 1)²/(x + 2).',
-   opts:['razionale intera','razionale fratta','irrazionale','trascendente'],ans:1,
+   opts:['razionale fratta','razionale intera','irrazionale','trascendente'],ans:0,
    exp:'(x−1)² è un polinomio; diviso per x+2 dà una razionale fratta.'},
   {q:'Qual è il grado del polinomio f(x) = 2x⁵ − 3x³ + x?',
-   opts:['3','5','8','9'],ans:1,
+   opts:['3','8','9','5'],ans:3,
    exp:'Il grado è l\'esponente più alto: 5.'},
   {q:'Classifica f(x) = cos(x²).',
    opts:['razionale intera','goniometrica','logaritmica','irrazionale'],ans:1,
    exp:'È il coseno di un\'espressione in x: funzione goniometrica (composta).'},
   {q:'Tra x³ e 3ˣ, quale è la funzione esponenziale?',
-   opts:['x³','3ˣ','entrambe','nessuna'],ans:1,
+   opts:['x³','entrambe','3ˣ','nessuna'],ans:2,
    exp:'In 3ˣ la variabile è all\'esponente: è l\'esponenziale. x³ è una potenza.'},
   {q:'Classifica f(x) = ∛(x + 1).',
-   opts:['razionale intera','irrazionale (indice dispari)','esponenziale','razionale fratta'],ans:1,
+   opts:['razionale intera','esponenziale','irrazionale (indice dispari)','razionale fratta'],ans:2,
    exp:'Radice cubica della variabile: irrazionale, con indice dispari.'},
   {q:'Classifica f(x) = √x /(x − 1).',
-   opts:['razionale fratta','irrazionale','esponenziale','razionale intera'],ans:1,
+   opts:['razionale fratta','esponenziale','razionale intera','irrazionale'],ans:3,
    exp:'La presenza della radice della variabile rende la funzione irrazionale.'},
   {q:'Classifica f(x) = 7.',
    opts:['razionale intera (grado 0)','esponenziale','logaritmica','non è una funzione'],ans:0,
    exp:'Una costante è un polinomio di grado 0.'},
   {q:'Classifica f(x) = (1/2)ˣ.',
-   opts:['logaritmica','esponenziale','razionale fratta','irrazionale'],ans:1,
+   opts:['esponenziale','logaritmica','razionale fratta','irrazionale'],ans:0,
    exp:'Base 1/2 (tra 0 e 1) con esponente x: esponenziale decrescente.'},
   {q:'Classifica f(x) = x + ln x.',
-   opts:['razionale intera','trascendente, perché contiene ln x','razionale fratta','irrazionale'],ans:1,
+   opts:['trascendente, perché contiene ln x','razionale intera','razionale fratta','irrazionale'],ans:0,
    exp:'La presenza del logaritmo rende l\'intera funzione trascendente.'},
   {q:'Classifica f(x) = log(x² + 1).',
-   opts:['razionale fratta','logaritmica','irrazionale','razionale intera'],ans:1,
+   opts:['logaritmica','razionale fratta','irrazionale','razionale intera'],ans:0,
    exp:'Logaritmo di un\'espressione in x: funzione logaritmica.'},
   {q:'Classifica f(x) = x · sin x.',
    opts:['razionale intera','trascendente','razionale fratta','costante'],ans:1,
@@ -575,96 +631,96 @@ nomi:{
 dom:{
  teoria:[
   {q:'Qual è il dominio di una funzione razionale intera?',
-   opts:['un intervallo limitato','ℝ (tutti i reali)','solo x &gt; 0','ℝ tolto un punto'],ans:1,
+   opts:['ℝ (tutti i reali)','un intervallo limitato','solo x &gt; 0','ℝ tolto un punto'],ans:0,
    exp:'I polinomi sono sempre definiti: Dom = ℝ.'},
   {q:'Per una razionale fratta P(x)/Q(x) si impone la condizione:',
-   opts:['P(x) ≠ 0','Q(x) ≠ 0','P(x) ≥ 0','Q(x) &gt; 0'],ans:1,
+   opts:['P(x) ≠ 0','P(x) ≥ 0','Q(x) &gt; 0','Q(x) ≠ 0'],ans:3,
    exp:'Non si può dividere per zero: il denominatore deve essere diverso da zero.'},
   {q:'Per una radice di indice PARI √A(x) si richiede:',
-   opts:['A(x) ≠ 0','A(x) &gt; 0','A(x) ≥ 0','A(x) ≤ 0'],ans:2,
+   opts:['A(x) ≠ 0','A(x) ≥ 0','A(x) &gt; 0','A(x) ≤ 0'],ans:1,
    exp:'Sotto una radice di indice pari il radicando deve essere ≥ 0.'},
   {q:'Per una radice di indice DISPARI ∛A(x):',
-   opts:['nessuna condizione sul radicando','A(x) ≥ 0','A(x) &gt; 0','A(x) ≠ 0'],ans:0,
+   opts:['A(x) ≥ 0','nessuna condizione sul radicando','A(x) &gt; 0','A(x) ≠ 0'],ans:1,
    exp:'Le radici di indice dispari sono definite per ogni valore reale del radicando.'},
   {q:'Per la funzione f(x) = √A(x)/B(x) si impone:',
-   opts:['A(x) ≥ 0 ∧ B(x) ≠ 0','A(x) &gt; 0 ∧ B(x) &gt; 0','A(x) ≠ 0 ∧ B(x) ≠ 0','A(x) ≥ 0 ∨ B(x) ≠ 0'],ans:0,
+   opts:['A(x) &gt; 0 ∧ B(x) &gt; 0','A(x) ≠ 0 ∧ B(x) ≠ 0','A(x) ≥ 0 ∧ B(x) ≠ 0','A(x) ≥ 0 ∨ B(x) ≠ 0'],ans:2,
    exp:'Si impongono tutte le condizioni contemporaneamente: radicando ≥ 0 E denominatore ≠ 0.'},
   {q:'Se f e g hanno domini Df e Dg, il dominio di f + g è:',
-   opts:['Df ∪ Dg','Df ∩ Dg','solo Df','ℝ'],ans:1,
+   opts:['Df ∪ Dg','solo Df','ℝ','Df ∩ Dg'],ans:3,
    exp:'Entrambe le funzioni devono essere definite: si prende l\'intersezione dei domini.'},
   {q:'Cosa significa "dominio simmetrico rispetto a 0"?',
-   opts:['contiene almeno lo zero','x ∈ Dom ⇒ −x ∈ Dom','contiene solo x ≥ 0','è un intervallo'],ans:1,
+   opts:['x ∈ Dom ⇒ −x ∈ Dom','contiene almeno lo zero','contiene solo x ≥ 0','è un intervallo'],ans:0,
    exp:'A ogni x del dominio corrisponde anche −x: condizione necessaria per studiare le simmetrie.'},
   {q:'Il dominio della somma di una razionale intera e di una irrazionale con indice pari è:',
    opts:['ℝ','il dominio della sola irrazionale','vuoto','dipende dal coefficiente'],ans:1,
    exp:'La razionale intera è definita ovunque: il dominio della somma coincide con quello dell\'irrazionale.'},
   {q:'Una funzione costante non nulla f(x) = c:',
-   opts:['ha dominio vuoto','ha dominio ℝ','ha dominio ℝ ∖ {0}','non è una funzione'],ans:1,
+   opts:['ha dominio vuoto','ha dominio ℝ ∖ {0}','non è una funzione','ha dominio ℝ'],ans:3,
    exp:'È un polinomio di grado 0, definito per ogni x reale.'},
   {q:'Per scrivere correttamente il dominio si usa:',
-   opts:['un\'unione di intervalli (o ℝ tolti alcuni punti)','solo l\'intervallo (−∞, +∞)','un singolo punto','un sistema di equazioni'],ans:0,
+   opts:['solo l\'intervallo (−∞, +∞)','un\'unione di intervalli (o ℝ tolti alcuni punti)','un singolo punto','un sistema di equazioni'],ans:1,
    exp:'La rappresentazione standard è un\'unione di intervalli o ℝ tolto un insieme finito di punti.'},
   {q:'Qual è il dominio di una funzione esponenziale aˣ?',
-   opts:['x &gt; 0','ℝ','x ≠ 0','x ≥ 0'],ans:1,
+   opts:['ℝ','x &gt; 0','x ≠ 0','x ≥ 0'],ans:0,
    exp:'L\'esponenziale è definita per ogni numero reale: Dom = ℝ.'},
   {q:'Per una funzione logaritmica log_a A(x) si impone:',
-   opts:['A(x) ≥ 0','A(x) &gt; 0','A(x) ≠ 0','A(x) &lt; 0'],ans:1,
+   opts:['A(x) ≥ 0','A(x) ≠ 0','A(x) &lt; 0','A(x) &gt; 0'],ans:3,
    exp:'L\'argomento del logaritmo deve essere STRETTAMENTE positivo: A(x) &gt; 0.'},
   {q:'Qual è il dominio delle funzioni sin x e cos x?',
-   opts:['ℝ','x ≥ 0','[−1, 1]','x ≠ kπ'],ans:0,
+   opts:['x ≥ 0','[−1, 1]','ℝ','x ≠ kπ'],ans:2,
    exp:'Seno e coseno sono definiti per ogni numero reale. [−1,1] è il loro codominio, non il dominio.'},
   {q:'La funzione tan x non è definita:',
-   opts:['per x = kπ','per x = π/2 + kπ','mai','per x &lt; 0'],ans:1,
+   opts:['per x = π/2 + kπ','per x = kπ','mai','per x &lt; 0'],ans:0,
    exp:'tan x = sin x/cos x: non esiste dove cos x = 0, cioè x = π/2 + kπ.'},
   {q:'Il dominio della funzione e^g(x):',
-   opts:['coincide con il dominio di g(x)','è sempre ℝ qualunque sia g','è g(x) &gt; 0','è vuoto'],ans:0,
+   opts:['è sempre ℝ qualunque sia g','è g(x) &gt; 0','è vuoto','coincide con il dominio di g(x)'],ans:3,
    exp:'L\'esponenziale non aggiunge restrizioni: l\'unico vincolo proviene dall\'esponente g(x).'},
   {q:'Per la funzione √(log x) si impongono insieme:',
-   opts:['x &gt; 0 e log x ≥ 0','solo x &gt; 0','solo log x ≥ 0','x ≥ 0'],ans:0,
+   opts:['solo x &gt; 0','solo log x ≥ 0','x &gt; 0 e log x ≥ 0','x ≥ 0'],ans:2,
    exp:'Condizione del logaritmo (x &gt; 0) e della radice pari (log x ≥ 0): sistema.'},
   {q:'Il dominio di ln(x² + 1) è:',
-   opts:['ℝ','x &gt; 0','x &gt; 1','ℝ ∖ {0}'],ans:0,
+   opts:['x &gt; 0','x &gt; 1','ℝ','ℝ ∖ {0}'],ans:2,
    exp:'L\'argomento x² + 1 è sempre &gt; 0, quindi nessun valore va escluso: Dom = ℝ.'},
   {q:'L\'argomento di un logaritmo può valere 0?',
-   opts:['Sì, sempre','No, deve essere strettamente positivo','Solo se la base è e','Solo se è minore di 1'],ans:1,
+   opts:['Sì, sempre','Solo se la base è e','No, deve essere strettamente positivo','Solo se è minore di 1'],ans:2,
    exp:'log_a 0 non esiste: l\'argomento deve essere &gt; 0, lo zero è escluso.'},
   {q:'Una funzione esponenziale non pone condizioni di esistenza perché:',
-   opts:['aˣ è definita per ogni x reale','aˣ è sempre positiva','è periodica','ha un asintoto'],ans:0,
+   opts:['aˣ è sempre positiva','è periodica','aˣ è definita per ogni x reale','ha un asintoto'],ans:2,
    exp:'Il dominio dell\'esponenziale è tutto ℝ: nessun valore va escluso.'},
   {q:'Per il dominio di 1/(eˣ − 1) si impone:',
-   opts:['eˣ − 1 &gt; 0','eˣ − 1 ≠ 0','eˣ ≥ 1','nessuna condizione'],ans:1,
+   opts:['eˣ − 1 &gt; 0','eˣ ≥ 1','nessuna condizione','eˣ − 1 ≠ 0'],ans:3,
    exp:'È una frazione: il denominatore eˣ − 1 deve essere diverso da 0 (cioè x ≠ 0).'}
  ],
  calcolo:[
   {q:'Dominio di f(x) = 3x² − x + 1.',
-   opts:['ℝ','ℝ ∖ {0}','x &gt; 0','x ≥ 0'],ans:0,
+   opts:['ℝ ∖ {0}','x &gt; 0','ℝ','x ≥ 0'],ans:2,
    exp:'È un polinomio: definito su tutto ℝ.'},
   {q:'Dominio di f(x) = 1/(x − 2).',
-   opts:['ℝ','ℝ ∖ {2}','x &gt; 2','x ≠ 0'],ans:1,
+   opts:['ℝ ∖ {2}','ℝ','x &gt; 2','x ≠ 0'],ans:0,
    exp:'Si annulla il denominatore per x = 2: Dom = ℝ ∖ {2}.'},
   {q:'Dominio di f(x) = (x + 1)/(x² − 9).',
    opts:['ℝ ∖ {3}','ℝ ∖ {−3, 3}','ℝ ∖ {0, 3}','ℝ'],ans:1,
    exp:'x² − 9 = 0 per x = ±3: Dom = ℝ ∖ {−3, 3}.'},
   {q:'Dominio di f(x) = √(x − 4).',
-   opts:['x &gt; 4','x ≥ 4','x ≤ 4','ℝ ∖ {4}'],ans:1,
+   opts:['x &gt; 4','x ≤ 4','x ≥ 4','ℝ ∖ {4}'],ans:2,
    exp:'Radicando ≥ 0: x − 4 ≥ 0 ⇒ x ≥ 4.'},
   {q:'Dominio di f(x) = √(x² − 4).',
    opts:['x ≥ 2','−2 ≤ x ≤ 2','x ≤ −2 ∨ x ≥ 2','ℝ'],ans:2,
    exp:'x² − 4 ≥ 0 ⇒ esterno alle radici: x ≤ −2 ∨ x ≥ 2.'},
   {q:'Dominio di f(x) = √(4 − x²).',
-   opts:['x ≥ 2','−2 ≤ x ≤ 2','x ≤ −2 ∨ x ≥ 2','ℝ'],ans:1,
+   opts:['−2 ≤ x ≤ 2','x ≥ 2','x ≤ −2 ∨ x ≥ 2','ℝ'],ans:0,
    exp:'4 − x² ≥ 0 ⇒ x² ≤ 4 ⇒ −2 ≤ x ≤ 2.'},
   {q:'Dominio di f(x) = ∛(x − 5).',
-   opts:['x ≥ 5','x ≤ 5','ℝ','ℝ ∖ {5}'],ans:2,
+   opts:['ℝ','x ≥ 5','x ≤ 5','ℝ ∖ {5}'],ans:0,
    exp:'Radice di indice dispari: nessuna condizione, Dom = ℝ.'},
   {q:'Dominio di f(x) = √(x − 1)/(x − 3).',
    opts:['x ≥ 1','x ≥ 1 ∧ x ≠ 3','x &gt; 3','x ≠ 1 ∧ x ≠ 3'],ans:1,
    exp:'Sistema: x − 1 ≥ 0 e x − 3 ≠ 0 ⇒ x ≥ 1 ∧ x ≠ 3.'},
   {q:'Dominio di f(x) = 1/√(x − 2).',
-   opts:['x ≥ 2','x &gt; 2','x ≠ 2','ℝ'],ans:1,
+   opts:['x ≥ 2','x ≠ 2','ℝ','x &gt; 2'],ans:3,
    exp:'Radicando ≥ 0 e radice (denominatore) ≠ 0: x − 2 &gt; 0 ⇒ x &gt; 2.'},
   {q:'Dominio di f(x) = (x² + 1)/(x² + 4).',
-   opts:['ℝ','ℝ ∖ {−2, 2}','x ≥ 0','ℝ ∖ {2}'],ans:0,
+   opts:['ℝ ∖ {−2, 2}','ℝ','x ≥ 0','ℝ ∖ {2}'],ans:1,
    exp:'x² + 4 ≥ 4 &gt; 0 ∀ x: il denominatore non si annulla mai. Dom = ℝ.'},
   {q:'Dominio di f(x) = 2ˣ.',
    opts:['ℝ','x &gt; 0','x ≠ 0','x ≥ 0'],ans:0,
@@ -676,112 +732,112 @@ dom:{
    opts:['x ≥ 0','x &gt; 0','ℝ','x ≠ 0'],ans:1,
    exp:'Il logaritmo è definito solo per argomento strettamente positivo: x &gt; 0.'},
   {q:'Dominio di f(x) = log(x² − 1).',
-   opts:['−1 &lt; x &lt; 1','x &lt; −1 ∨ x &gt; 1','x &gt; 1','x ≠ ±1'],ans:1,
+   opts:['−1 &lt; x &lt; 1','x &gt; 1','x ≠ ±1','x &lt; −1 ∨ x &gt; 1'],ans:3,
    exp:'x² − 1 &gt; 0 ⇒ esterno alle radici: x &lt; −1 ∨ x &gt; 1.'},
   {q:'Dominio di f(x) = e^(1/x).',
    opts:['ℝ','ℝ ∖ {0}','x &gt; 0','x ≠ 1'],ans:1,
    exp:'L\'esponenziale non pone vincoli, ma l\'esponente 1/x richiede x ≠ 0.'},
   {q:'Dominio di f(x) = √(ln x).',
-   opts:['x &gt; 0','x ≥ 1','x &gt; 1','ℝ'],ans:1,
+   opts:['x &gt; 0','x &gt; 1','x ≥ 1','ℝ'],ans:2,
    exp:'Sistema: x &gt; 0 (logaritmo) e ln x ≥ 0 ⇒ x ≥ 1. L\'intersezione è x ≥ 1.'},
   {q:'Dominio di f(x) = log(x² + 4).',
-   opts:['ℝ','x &gt; 0','x &gt; 2','ℝ ∖ {−2, 2}'],ans:0,
+   opts:['x &gt; 0','x &gt; 2','ℝ','ℝ ∖ {−2, 2}'],ans:2,
    exp:'x² + 4 &gt; 0 sempre: l\'argomento è sempre positivo, Dom = ℝ.'},
   {q:'Dominio di f(x) = 1/(eˣ − 1).',
-   opts:['ℝ','ℝ ∖ {0}','ℝ ∖ {1}','x &gt; 0'],ans:1,
+   opts:['ℝ ∖ {0}','ℝ','ℝ ∖ {1}','x &gt; 0'],ans:0,
    exp:'eˣ − 1 = 0 ⇒ eˣ = 1 ⇒ x = 0: si esclude x = 0.'},
   {q:'Dominio di f(x) = ln(−x).',
-   opts:['x &gt; 0','x &lt; 0','x ≠ 0','ℝ'],ans:1,
+   opts:['x &lt; 0','x &gt; 0','x ≠ 0','ℝ'],ans:0,
    exp:'L\'argomento deve essere &gt; 0: −x &gt; 0 ⇒ x &lt; 0.'},
   {q:'Dominio di f(x) = tan x.',
-   opts:['ℝ','x ≠ kπ','x ≠ π/2 + kπ','x &gt; 0'],ans:2,
+   opts:['ℝ','x ≠ kπ','x &gt; 0','x ≠ π/2 + kπ'],ans:3,
    exp:'tan x non esiste dove cos x = 0, cioè per x = π/2 + kπ.'}
  ]
 },
 sim:{
  teoria:[
   {q:'Lo studio delle simmetrie ha senso solo se:',
-   opts:['il dominio è ℝ','il dominio è simmetrico rispetto a 0','la funzione è continua','la funzione è polinomiale'],ans:1,
+   opts:['il dominio è ℝ','la funzione è continua','il dominio è simmetrico rispetto a 0','la funzione è polinomiale'],ans:2,
    exp:'Per confrontare f(−x) con f(x) servono entrambi: il dominio deve contenere x ⇒ −x.'},
   {q:'Una funzione è PARI se:',
-   opts:['f(−x) = f(x) per ogni x del dominio','f(−x) = −f(x) per ogni x del dominio','f(x) ≥ 0 per ogni x','è polinomiale di grado pari'],ans:0,
+   opts:['f(−x) = −f(x) per ogni x del dominio','f(−x) = f(x) per ogni x del dominio','f(x) ≥ 0 per ogni x','è polinomiale di grado pari'],ans:1,
    exp:'Definizione di funzione pari: grafico simmetrico rispetto all\'asse y.'},
   {q:'Una funzione è DISPARI se:',
-   opts:['f(−x) = f(x)','f(−x) = −f(x) per ogni x del dominio','f(0) = 0','è dispari il suo grado'],ans:1,
+   opts:['f(−x) = f(x)','f(0) = 0','f(−x) = −f(x) per ogni x del dominio','è dispari il suo grado'],ans:2,
    exp:'Definizione di funzione dispari: grafico simmetrico rispetto all\'origine.'},
   {q:'Una funzione dispari, se definita in 0, in 0 vale:',
    opts:['1','−1','0','un valore qualunque'],ans:2,
    exp:'f(0) = f(−0) = −f(0) ⇒ 2f(0) = 0 ⇒ f(0) = 0.'},
   {q:'Un polinomio formato da sole potenze pari (con eventuale termine noto) è:',
-   opts:['pari','dispari','né pari né dispari','non si può dire'],ans:0,
+   opts:['dispari','pari','né pari né dispari','non si può dire'],ans:1,
    exp:'Es. x⁴ + 3x² + 1: sostituendo −x il segno non cambia.'},
   {q:'Un polinomio formato da sole potenze dispari (senza termine noto) è:',
-   opts:['pari','dispari','dipende dai coefficienti','costante'],ans:1,
+   opts:['dispari','pari','dipende dai coefficienti','costante'],ans:0,
    exp:'Es. 2x⁵ − x: ogni potenza dispari cambia segno con x → −x.'},
   {q:'Un polinomio con miscele di potenze pari e dispari è:',
-   opts:['pari','dispari','né pari né dispari','sempre dispari se il grado è dispari'],ans:2,
+   opts:['pari','dispari','sempre dispari se il grado è dispari','né pari né dispari'],ans:3,
    exp:'Es. x² + x: f(−x) = x² − x ≠ ±f(x).'},
   {q:'Se f(x) è dispari e g(x) è pari, allora f(x)·g(x) è:',
-   opts:['pari','dispari','né pari né dispari','sempre nulla'],ans:1,
+   opts:['dispari','pari','né pari né dispari','sempre nulla'],ans:0,
    exp:'(fg)(−x) = (−f(x))·g(x) = −(f·g)(x): prodotto dispari.'},
   {q:'Se per qualche x del dominio risulta f(−x) ≠ f(x) e f(−x) ≠ −f(x):',
    opts:['la funzione è pari','la funzione è dispari','la funzione non è né pari né dispari','non si può dire nulla'],ans:2,
    exp:'La condizione deve valere per OGNI x: basta un controesempio per escludere entrambe.'},
   {q:'Vantaggio pratico delle simmetrie nello studio di funzione:',
-   opts:['rende il dominio più ampio','si può studiare solo per x ≥ 0 e poi simmetrizzare','elimina i punti di discontinuità','azzera le intersezioni con gli assi'],ans:1,
+   opts:['rende il dominio più ampio','elimina i punti di discontinuità','si può studiare solo per x ≥ 0 e poi simmetrizzare','azzera le intersezioni con gli assi'],ans:2,
    exp:'Il grafico per x &lt; 0 si ottiene per simmetria da quello per x ≥ 0.'},
   {q:'La funzione sin x è:',
-   opts:['pari','dispari','né pari né dispari','costante'],ans:1,
+   opts:['pari','né pari né dispari','dispari','costante'],ans:2,
    exp:'sin(−x) = −sin x: il seno è una funzione dispari.'},
   {q:'La funzione cos x è:',
-   opts:['pari','dispari','né pari né dispari','solo periodica'],ans:0,
+   opts:['dispari','né pari né dispari','pari','solo periodica'],ans:2,
    exp:'cos(−x) = cos x: il coseno è una funzione pari.'},
   {q:'La funzione tan x è:',
    opts:['pari','dispari','né pari né dispari','costante'],ans:1,
    exp:'tan(−x) = sin(−x)/cos(−x) = −sin x/cos x = −tan x: dispari.'},
   {q:'La funzione esponenziale eˣ è:',
-   opts:['pari','dispari','né pari né dispari','simmetrica rispetto all\'asse y'],ans:2,
+   opts:['né pari né dispari','pari','dispari','simmetrica rispetto all\'asse y'],ans:0,
    exp:'eˣ non soddisfa né f(−x) = f(x) né f(−x) = −f(x).'},
   {q:'Per la funzione ln x lo studio delle simmetrie:',
-   opts:['dà funzione pari','dà funzione dispari','non si fa: il dominio (0, +∞) non è simmetrico','dà funzione né pari né dispari'],ans:2,
+   opts:['non si fa: il dominio (0, +∞) non è simmetrico','dà funzione pari','dà funzione dispari','dà funzione né pari né dispari'],ans:0,
    exp:'Il dominio del logaritmo non contiene valori negativi: la verifica non è applicabile.'},
   {q:'La funzione sin x è dispari perché:',
-   opts:['sin(−x) = sin x','sin(−x) = −sin x','sin x ≥ 0','ha periodo 2π'],ans:1,
+   opts:['sin(−x) = −sin x','sin(−x) = sin x','sin x ≥ 0','ha periodo 2π'],ans:0,
    exp:'È la definizione stessa di funzione dispari applicata al seno.'},
   {q:'La funzione cos x è pari perché:',
-   opts:['cos(−x) = cos x','cos(−x) = −cos x','cos x ≥ 0','ha periodo π'],ans:0,
+   opts:['cos(−x) = −cos x','cos x ≥ 0','ha periodo π','cos(−x) = cos x'],ans:3,
    exp:'Il coseno di angoli opposti è uguale: definizione di funzione pari.'},
   {q:'La funzione f(x) = x · cos x (dominio ℝ) è:',
    opts:['pari','dispari','né pari né dispari','costante'],ans:1,
    exp:'x è dispari, cos x è pari: dispari × pari = dispari.'},
   {q:'La funzione f(x) = x · sin x (dominio ℝ) è:',
-   opts:['pari','dispari','né pari né dispari','costante'],ans:0,
+   opts:['dispari','né pari né dispari','costante','pari'],ans:3,
    exp:'x è dispari, sin x è dispari: dispari × dispari = pari.'},
   {q:'Una funzione esponenziale aˣ non può essere né pari né dispari perché:',
-   opts:['è sempre positiva, quindi non può valere −f(x)','è periodica','ha dominio limitato','non è continua'],ans:0,
+   opts:['è periodica','ha dominio limitato','non è continua','è sempre positiva, quindi non può valere −f(x)'],ans:3,
    exp:'aˣ &gt; 0 sempre: non potrà mai coincidere con −f(x), che sarebbe negativa.'}
  ],
  calcolo:[
   {q:'f(x) = x⁴ − 2x² + 5. Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','costante'],ans:0,
+   opts:['dispari','né pari né dispari','costante','pari'],ans:3,
    exp:'Solo potenze pari (5 = 5x⁰): f(−x) = x⁴ − 2x² + 5 = f(x). Pari.'},
   {q:'f(x) = x³ − 4x. Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','non si può dire'],ans:1,
+   opts:['pari','né pari né dispari','non si può dire','dispari'],ans:3,
    exp:'Solo potenze dispari: f(−x) = −x³ + 4x = −f(x). Dispari.'},
   {q:'f(x) = x² + x. Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','dispari solo per x &gt; 0'],ans:2,
+   opts:['né pari né dispari','pari','dispari','dispari solo per x &gt; 0'],ans:0,
    exp:'f(−x) = x² − x: né uguale a f(x) né a −f(x).'},
   {q:'f(x) = 1/(x² + 1). Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','non definita'],ans:0,
+   opts:['dispari','né pari né dispari','pari','non definita'],ans:2,
    exp:'f(−x) = 1/((−x)² + 1) = 1/(x² + 1) = f(x): pari.'},
   {q:'f(x) = x/(x² + 1). Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','indeterminata'],ans:1,
+   opts:['pari','né pari né dispari','indeterminata','dispari'],ans:3,
    exp:'f(−x) = −x/(x² + 1) = −f(x): dispari.'},
   {q:'f(x) = √(x² + 4). Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','non studiabile'],ans:0,
+   opts:['dispari','né pari né dispari','non studiabile','pari'],ans:3,
    exp:'Dom = ℝ (simmetrico). f(−x) = √(x² + 4) = f(x): pari.'},
   {q:'f(x) = √(x − 1). Si possono studiare le simmetrie?',
-   opts:['Sì, è pari','Sì, è dispari','No: il dominio [1, +∞) non è simmetrico','Sì, è né pari né dispari'],ans:2,
+   opts:['Sì, è pari','No: il dominio [1, +∞) non è simmetrico','Sì, è dispari','Sì, è né pari né dispari'],ans:1,
    exp:'Dominio non simmetrico rispetto a 0: la verifica non si applica.'},
   {q:'f(x) = x³ + x. Che simmetria?',
    opts:['pari','dispari','né pari né dispari','dispari solo se x &gt; 0'],ans:1,
@@ -790,28 +846,28 @@ sim:{
    opts:['pari','dispari','né pari né dispari','irrilevante'],ans:0,
    exp:'Numeratore e denominatore sono entrambi pari: pari/pari = pari.'},
   {q:'f(x) = 2x⁵ − 3x. Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','costante'],ans:1,
+   opts:['pari','né pari né dispari','dispari','costante'],ans:2,
    exp:'Solo potenze dispari: f(−x) = −2x⁵ + 3x = −f(x). Dispari.'},
   {q:'f(x) = cos(2x). Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','costante'],ans:0,
+   opts:['dispari','né pari né dispari','pari','costante'],ans:2,
    exp:'cos(−2x) = cos(2x) = f(x): pari.'},
   {q:'f(x) = sin(3x). Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','costante'],ans:1,
+   opts:['pari','né pari né dispari','dispari','costante'],ans:2,
    exp:'sin(−3x) = −sin(3x) = −f(x): dispari.'},
   {q:'f(x) = eˣ + e⁻ˣ. Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','costante'],ans:0,
+   opts:['dispari','né pari né dispari','pari','costante'],ans:2,
    exp:'f(−x) = e⁻ˣ + eˣ = f(x): pari.'},
   {q:'f(x) = eˣ − e⁻ˣ. Che simmetria?',
    opts:['pari','dispari','né pari né dispari','costante'],ans:1,
    exp:'f(−x) = e⁻ˣ − eˣ = −(eˣ − e⁻ˣ) = −f(x): dispari.'},
   {q:'f(x) = x² + cos x. Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','costante'],ans:0,
+   opts:['dispari','pari','né pari né dispari','costante'],ans:1,
    exp:'x² è pari, cos x è pari: somma di funzioni pari è pari.'},
   {q:'f(x) = sin x + x³. Che simmetria?',
    opts:['pari','dispari','né pari né dispari','costante'],ans:1,
    exp:'sin x è dispari, x³ è dispari: somma di funzioni dispari è dispari.'},
   {q:'f(x) = sin x + cos x. Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','costante'],ans:2,
+   opts:['né pari né dispari','pari','dispari','costante'],ans:0,
    exp:'Somma di una funzione dispari (sin x) e una pari (cos x): né pari né dispari.'},
   {q:'f(x) = ln x. Si possono studiare le simmetrie?',
    opts:['Sì, è pari','Sì, è dispari','No, il dominio (0, +∞) non è simmetrico','Sì, è né pari né dispari'],ans:2,
@@ -820,32 +876,32 @@ sim:{
    opts:['pari','dispari','né pari né dispari','costante'],ans:1,
    exp:'x² è pari, tan x è dispari: pari × dispari = dispari.'},
   {q:'f(x) = x · eˣ. Che simmetria?',
-   opts:['pari','dispari','né pari né dispari','costante'],ans:2,
+   opts:['pari','né pari né dispari','dispari','costante'],ans:1,
    exp:'x è dispari ma eˣ è né pari né dispari: il prodotto non ha simmetria.'}
  ]
 },
 int:{
  teoria:[
   {q:'Per trovare l\'intersezione con l\'asse y si pone:',
-   opts:['y = 0 e si risolve','x = 0 e si calcola f(0)','f(x) = 1','x = 1 e si calcola f(1)'],ans:1,
+   opts:['y = 0 e si risolve','f(x) = 1','x = 1 e si calcola f(1)','x = 0 e si calcola f(0)'],ans:3,
    exp:'L\'asse y è la retta x = 0: si valuta f in 0, se 0 appartiene al dominio.'},
   {q:'Per trovare le intersezioni con l\'asse x si pone:',
-   opts:['x = 0 e si calcola f(0)','f(x) = 0 e si risolve in x','f(x) = 1','x = ±1 e si confronta'],ans:1,
+   opts:['x = 0 e si calcola f(0)','f(x) = 1','x = ±1 e si confronta','f(x) = 0 e si risolve in x'],ans:3,
    exp:'L\'asse x è la retta y = 0: gli zeri di f sono i punti dove il grafico tocca l\'asse x.'},
   {q:'Quante intersezioni con l\'asse y può avere il grafico di una funzione?',
-   opts:['nessuna o una','sempre una','infinite','due'],ans:0,
+   opts:['sempre una','nessuna o una','infinite','due'],ans:1,
    exp:'Per definizione di funzione, in x = 0 al massimo un punto; nessuna se 0 non è nel dominio.'},
   {q:'Per la razionale fratta f(x) = P(x)/Q(x), gli zeri di f sono:',
-   opts:['gli zeri di P(x)','gli zeri di Q(x)','gli zeri di P che non annullano Q','gli zeri di P + Q'],ans:2,
+   opts:['gli zeri di P(x)','gli zeri di P che non annullano Q','gli zeri di Q(x)','gli zeri di P + Q'],ans:1,
    exp:'P/Q = 0 ⇔ P = 0 e Q ≠ 0.'},
   {q:'Per la funzione √A(x) = 0 si ottiene:',
    opts:['A(x) = 0 e A(x) ≥ 0 nel dominio','A(x) ≠ 0','A(x) = 1','A(x) &lt; 0'],ans:0,
    exp:'Una radice è nulla solo quando il radicando è nullo.'},
   {q:'Se 0 non appartiene al dominio di f:',
-   opts:['non esiste intersezione con l\'asse y','si calcola comunque il limite per x → 0','si pone f(0) = 0','f è dispari'],ans:0,
+   opts:['si calcola comunque il limite per x → 0','non esiste intersezione con l\'asse y','si pone f(0) = 0','f è dispari'],ans:1,
    exp:'L\'intersezione richiede di valutare f(0): se 0 non è nel dominio, non c\'è.'},
   {q:'Le intersezioni con l\'asse x si chiamano anche:',
-   opts:['poli','zeri della funzione','asintoti','punti di flesso'],ans:1,
+   opts:['poli','asintoti','zeri della funzione','punti di flesso'],ans:2,
    exp:'Sono i valori x₀ tali che f(x₀) = 0.'},
   {q:'Per un polinomio di grado n, il numero di intersezioni con l\'asse x è al massimo:',
    opts:['1','2','n','infinito'],ans:2,
@@ -854,16 +910,16 @@ int:{
    opts:['(0, 0)','(0, 1)','(1, 0)','(0, a)'],ans:1,
    exp:'a⁰ = 1 per ogni base a: l\'intersezione con l\'asse y è (0, 1).'},
   {q:'Una funzione esponenziale aˣ interseca l\'asse x:',
-   opts:['in (0, 0)','in un solo punto','mai, perché aˣ &gt; 0','in infiniti punti'],ans:2,
+   opts:['mai, perché aˣ &gt; 0','in (0, 0)','in un solo punto','in infiniti punti'],ans:0,
    exp:'L\'esponenziale è sempre positiva: non si annulla mai, quindi nessuno zero.'},
   {q:'La funzione logaritmica log_a x interseca l\'asse x in:',
-   opts:['(1, 0)','(0, 1)','(0, 0)','(a, 0)'],ans:0,
+   opts:['(0, 1)','(1, 0)','(0, 0)','(a, 0)'],ans:1,
    exp:'log_a 1 = 0 per ogni base: lo zero del logaritmo è x = 1.'},
   {q:'La funzione log_a x interseca l\'asse y:',
-   opts:['in (0, 1)','in (0, 0)','mai, perché 0 non è nel dominio','in (1, 0)'],ans:2,
+   opts:['in (0, 1)','in (0, 0)','in (1, 0)','mai, perché 0 non è nel dominio'],ans:3,
    exp:'Il dominio del logaritmo è (0, +∞): 0 è escluso, niente intersezione con l\'asse y.'},
   {q:'La funzione sin x interseca l\'asse y in:',
-   opts:['(0, 0)','(0, 1)','(0, −1)','mai'],ans:0,
+   opts:['(0, 1)','(0, −1)','(0, 0)','mai'],ans:2,
    exp:'sin 0 = 0: l\'intersezione con l\'asse y è l\'origine.'},
   {q:'Gli zeri della funzione sin x sono:',
    opts:['x = kπ','x = π/2 + kπ','solo x = 0','x = 2kπ'],ans:0,
@@ -875,21 +931,21 @@ int:{
    opts:['(0, 1)','(0, 0)','(0, −1)','mai'],ans:0,
    exp:'cos 0 = 1: l\'intersezione con l\'asse y è (0, 1).'},
   {q:'Per trovare gli zeri di f(x) = eˣ − 1 si risolve:',
-   opts:['eˣ = 1 ⇒ x = 0','eˣ = 0','x = 1','non ci sono soluzioni'],ans:0,
+   opts:['eˣ = 0','x = 1','eˣ = 1 ⇒ x = 0','non ci sono soluzioni'],ans:2,
    exp:'eˣ − 1 = 0 ⇒ eˣ = 1 ⇒ x = 0.'},
   {q:'Per trovare lo zero di f(x) = ln(x − 2) si pone ln(x − 2) = 0, cioè:',
-   opts:['x − 2 = 1 ⇒ x = 3','x − 2 = 0 ⇒ x = 2','x = 0','non c\'è soluzione'],ans:0,
+   opts:['x − 2 = 0 ⇒ x = 2','x = 0','x − 2 = 1 ⇒ x = 3','non c\'è soluzione'],ans:2,
    exp:'ln(arg) = 0 ⇔ arg = 1: x − 2 = 1 ⇒ x = 3.'},
   {q:'Le intersezioni con gli assi sono utili principalmente per:',
-   opts:['calcolare la derivata','tracciare punti certi del grafico','stabilire la continuità','definire il dominio'],ans:1,
+   opts:['calcolare la derivata','stabilire la continuità','definire il dominio','tracciare punti certi del grafico'],ans:3,
    exp:'Sono punti di passaggio noti del grafico, fondamentali insieme allo studio del segno.'},
   {q:'Se f(0) = c con c ≠ 0, l\'asse y interseca il grafico nel punto:',
-   opts:['(c, 0)','(0, c)','(0, 0)','(1, c)'],ans:1,
+   opts:['(c, 0)','(0, 0)','(0, c)','(1, c)'],ans:2,
    exp:'L\'ascissa è 0, l\'ordinata è c: il punto è (0, c).'}
  ],
  calcolo:[
   {q:'f(x) = 2x − 6. Intersezioni con gli assi?',
-   opts:['(0, −6) e (3, 0)','(−6, 0) e (0, 3)','(0, 6) e (3, 0)','solo (0, 0)'],ans:0,
+   opts:['(−6, 0) e (0, 3)','(0, −6) e (3, 0)','(0, 6) e (3, 0)','solo (0, 0)'],ans:1,
    exp:'f(0) = −6 ⇒ (0, −6). 2x − 6 = 0 ⇒ x = 3 ⇒ (3, 0).'},
   {q:'f(x) = x² − 9. Intersezioni con gli assi?',
    opts:['(0, −9), (3, 0)','(0, −9), (±3, 0)','(0, 9), (±3, 0)','(0, 0), (3, 0)'],ans:1,
@@ -898,116 +954,116 @@ int:{
    opts:['(0, −1/2), (1, 0)','(0, −2), (1, 0)','(0, 1), (−2, 0)','solo (1, 0)'],ans:0,
    exp:'f(0) = −1/2 ⇒ (0, −1/2). N = 0 ⇒ x = 1, e 1 ≠ −2 ⇒ (1, 0).'},
   {q:'f(x) = (x² − 4)/(x − 2). Zeri?',
-   opts:['x = ±2','x = −2 (x = 2 non è nel dominio)','x = 2','nessuno'],ans:1,
+   opts:['x = ±2','x = 2','x = −2 (x = 2 non è nel dominio)','nessuno'],ans:2,
    exp:'x = 2 annulla anche il denominatore (fuori dominio): resta solo x = −2.'},
   {q:'f(x) = x³ − x. Intersezioni con l\'asse x?',
-   opts:['(0, 0)','(0, 0), (1, 0)','(−1, 0), (0, 0), (1, 0)','(1, 0), (−1, 0)'],ans:2,
+   opts:['(0, 0)','(−1, 0), (0, 0), (1, 0)','(0, 0), (1, 0)','(1, 0), (−1, 0)'],ans:1,
    exp:'x³ − x = x(x − 1)(x + 1) = 0 ⇒ x = 0, ±1.'},
   {q:'f(x) = √(x − 1). Intersezione con l\'asse y?',
-   opts:['(0, −1)','(0, 0)','(0, 1)','non esiste (0 non è nel dominio)'],ans:3,
+   opts:['(0, −1)','non esiste (0 non è nel dominio)','(0, 0)','(0, 1)'],ans:1,
    exp:'Dom = [1, +∞): 0 non vi appartiene.'},
   {q:'f(x) = √(x − 1). Intersezioni con l\'asse x?',
-   opts:['(1, 0)','(0, 0)','nessuna','(−1, 0)'],ans:0,
+   opts:['(0, 0)','(1, 0)','nessuna','(−1, 0)'],ans:1,
    exp:'√(x − 1) = 0 ⇔ x = 1 ⇒ (1, 0).'},
   {q:'f(x) = 1/x. Intersezioni con gli assi?',
-   opts:['(0, 0)','solo (0, 1)','solo (1, 0)','nessuna'],ans:3,
+   opts:['(0, 0)','nessuna','solo (0, 1)','solo (1, 0)'],ans:1,
    exp:'0 non è nel dominio; 1/x = 0 non ha soluzioni: nessuna intersezione.'},
   {q:'f(x) = x² + 1. Intersezioni con l\'asse x?',
-   opts:['(±1, 0)','(0, 1)','nessuna','infinite'],ans:2,
+   opts:['(±1, 0)','(0, 1)','infinite','nessuna'],ans:3,
    exp:'x² + 1 = 0 non ha soluzioni reali.'},
   {q:'f(x) = (x² − 1)/(x² + 1). Intersezioni complete?',
-   opts:['(0, −1) e (±1, 0)','(0, 1) e (±1, 0)','solo (0, −1)','solo (±1, 0)'],ans:0,
+   opts:['(0, 1) e (±1, 0)','solo (0, −1)','solo (±1, 0)','(0, −1) e (±1, 0)'],ans:3,
    exp:'f(0) = −1 ⇒ (0, −1). N = 0 ⇒ x = ±1.'},
   {q:'f(x) = eˣ. Intersezioni con gli assi?',
-   opts:['(0, 1); nessuno zero','(0, 0)','(1, 0)','(0, 1) e (1, 0)'],ans:0,
+   opts:['(0, 0)','(0, 1); nessuno zero','(1, 0)','(0, 1) e (1, 0)'],ans:1,
    exp:'e⁰ = 1 ⇒ (0, 1); eˣ &gt; 0 sempre ⇒ nessun zero.'},
   {q:'f(x) = ln x. Intersezioni con gli assi?',
-   opts:['(1, 0); nessuna con l\'asse y','(0, 0)','(0, 1)','(1, 0) e (0, 1)'],ans:0,
+   opts:['(0, 0)','(1, 0); nessuna con l\'asse y','(0, 1)','(1, 0) e (0, 1)'],ans:1,
    exp:'ln 1 = 0 ⇒ (1, 0); 0 non è nel dominio ⇒ nessuna intersezione con l\'asse y.'},
   {q:'f(x) = 2ˣ − 1. Qual è lo zero?',
-   opts:['x = 0','x = 1','x = 2','nessuno'],ans:0,
+   opts:['x = 1','x = 2','x = 0','nessuno'],ans:2,
    exp:'2ˣ − 1 = 0 ⇒ 2ˣ = 1 ⇒ x = 0.'},
   {q:'f(x) = eˣ − e. Qual è lo zero?',
-   opts:['x = 0','x = 1','x = e','nessuno'],ans:1,
+   opts:['x = 1','x = 0','x = e','nessuno'],ans:0,
    exp:'eˣ − e = 0 ⇒ eˣ = e ⇒ x = 1.'},
   {q:'f(x) = sin x. Intersezione con l\'asse y?',
-   opts:['(0, 0)','(0, 1)','(0, −1)','nessuna'],ans:0,
+   opts:['(0, 1)','(0, 0)','(0, −1)','nessuna'],ans:1,
    exp:'sin 0 = 0: il grafico passa per l\'origine.'},
   {q:'f(x) = cos x. Zeri nell\'intervallo [0, 2π]?',
-   opts:['π/2 e 3π/2','0 e π','solo π','π/4 e 3π/4'],ans:0,
+   opts:['0 e π','solo π','π/2 e 3π/2','π/4 e 3π/4'],ans:2,
    exp:'cos x = 0 in [0, 2π] per x = π/2 e x = 3π/2.'},
   {q:'f(x) = ln x − 1. Qual è lo zero?',
    opts:['x = 1','x = e','x = 0','x = 10'],ans:1,
    exp:'ln x − 1 = 0 ⇒ ln x = 1 ⇒ x = e.'},
   {q:'f(x) = log₂ x. Qual è lo zero?',
-   opts:['x = 1','x = 2','x = 0','x = 1/2'],ans:0,
+   opts:['x = 2','x = 0','x = 1/2','x = 1'],ans:3,
    exp:'log₂ x = 0 ⇒ x = 2⁰ = 1.'},
   {q:'f(x) = eˣ + 1. Zeri?',
-   opts:['x = 0','x = −1','nessuno, perché eˣ + 1 &gt; 0 sempre','x = 1'],ans:2,
+   opts:['x = 0','x = −1','x = 1','nessuno, perché eˣ + 1 &gt; 0 sempre'],ans:3,
    exp:'eˣ &gt; 0 ⇒ eˣ + 1 &gt; 1: la funzione non si annulla mai.'},
   {q:'f(x) = sin x − 1. Zeri nell\'intervallo [0, 2π]?',
-   opts:['x = π/2','x = 0','x = π','nessuno'],ans:0,
+   opts:['x = 0','x = π/2','x = π','nessuno'],ans:1,
    exp:'sin x − 1 = 0 ⇒ sin x = 1 ⇒ x = π/2.'}
  ]
 },
 seg:{
  teoria:[
   {q:'Studiare il segno di f(x) significa:',
-   opts:['risolvere f(x) = 0','stabilire dove f &gt; 0 e dove f &lt; 0','calcolare il dominio','trovare gli asintoti'],ans:1,
+   opts:['stabilire dove f &gt; 0 e dove f &lt; 0','risolvere f(x) = 0','calcolare il dominio','trovare gli asintoti'],ans:0,
    exp:'Si individuano gli intervalli in cui il grafico sta sopra o sotto l\'asse x.'},
   {q:'Per una razionale fratta P/Q, il segno di f si ottiene:',
-   opts:['solo dal numeratore','solo dal denominatore','combinando i segni di P e Q','sempre da P − Q'],ans:2,
+   opts:['combinando i segni di P e Q','solo dal numeratore','solo dal denominatore','sempre da P − Q'],ans:0,
    exp:'Regola dei segni: P/Q è positivo se P e Q hanno lo stesso segno.'},
   {q:'Una radice di indice pari √A(x), nel suo dominio:',
-   opts:['è sempre ≥ 0','può essere negativa','ha lo stesso segno di A(x)','è nulla solo se A = 1'],ans:0,
+   opts:['può essere negativa','ha lo stesso segno di A(x)','è sempre ≥ 0','è nulla solo se A = 1'],ans:2,
    exp:'La radice quadrata principale è non negativa.'},
   {q:'Una radice di indice dispari ∛A(x) ha lo stesso segno di:',
-   opts:['A(x)','x','−A(x)','sempre positivo'],ans:0,
+   opts:['x','A(x)','−A(x)','sempre positivo'],ans:1,
    exp:'∛(positivo) &gt; 0; ∛(negativo) &lt; 0.'},
   {q:'Per costruire la tabella dei segni si:',
-   opts:['ordinano gli zeri sulla retta reale','fissano due valori a piacere','parte dal valore massimo','parte sempre da x = 0'],ans:0,
+   opts:['fissano due valori a piacere','parte dal valore massimo','parte sempre da x = 0','ordinano gli zeri sulla retta reale'],ans:3,
    exp:'Si dispongono in ordine crescente i punti che annullano i fattori.'},
   {q:'Se P(x) = (x − 1)(x + 2), P(x) &gt; 0 quando:',
-   opts:['x &lt; −2 ∨ x &gt; 1','−2 &lt; x &lt; 1','x = ±1','sempre'],ans:0,
+   opts:['−2 &lt; x &lt; 1','x &lt; −2 ∨ x &gt; 1','x = ±1','sempre'],ans:1,
    exp:'Prodotto &gt; 0 quando i due fattori hanno lo stesso segno.'},
   {q:'Lo studio del segno si effettua nell\'insieme:',
    opts:['ℝ','il dominio di f','solo i punti di intersezione','x &gt; 0'],ans:1,
    exp:'Fuori dal dominio la funzione non è definita.'},
   {q:'Una funzione f(x) = √A(x) è positiva quando:',
-   opts:['A(x) &gt; 0','A(x) ≥ 0','A(x) &lt; 0','A(x) = 1'],ans:0,
+   opts:['A(x) ≥ 0','A(x) &lt; 0','A(x) = 1','A(x) &gt; 0'],ans:3,
    exp:'La radice è nulla per A = 0 e positiva per A &gt; 0.'},
   {q:'Conoscere il segno di f permette di prevedere:',
-   opts:['le derivate','la posizione del grafico rispetto all\'asse x','il dominio','i limiti'],ans:1,
+   opts:['le derivate','il dominio','i limiti','la posizione del grafico rispetto all\'asse x'],ans:3,
    exp:'Dove f &gt; 0 il grafico è sopra l\'asse x, dove f &lt; 0 è sotto.'},
   {q:'Uno zero del numeratore in P/Q:',
-   opts:['è sempre punto di discontinuità','è uno zero di f se non annulla anche Q','è un asintoto verticale','dà f = 1'],ans:1,
+   opts:['è uno zero di f se non annulla anche Q','è sempre punto di discontinuità','è un asintoto verticale','dà f = 1'],ans:0,
    exp:'P = 0 e Q ≠ 0 ⇒ f = 0.'},
   {q:'Una funzione esponenziale aˣ ha segno:',
    opts:['sempre positivo','sempre negativo','positivo solo per x &gt; 0','dipendente dalla base'],ans:0,
    exp:'aˣ &gt; 0 per ogni x, qualunque sia la base a &gt; 0.'},
   {q:'La funzione ln x è positiva per:',
-   opts:['x &gt; 1','0 &lt; x &lt; 1','x &gt; 0','x &lt; 0'],ans:0,
+   opts:['0 &lt; x &lt; 1','x &gt; 0','x &gt; 1','x &lt; 0'],ans:2,
    exp:'ln x &gt; 0 ⇔ x &gt; 1; in x = 1 vale 0.'},
   {q:'La funzione ln x è negativa per:',
-   opts:['x &gt; 1','0 &lt; x &lt; 1','x &lt; 0','mai'],ans:1,
+   opts:['x &gt; 1','x &lt; 0','mai','0 &lt; x &lt; 1'],ans:3,
    exp:'Per argomenti compresi tra 0 e 1 il logaritmo è negativo.'},
   {q:'La funzione log_a x (con a &gt; 1) si annulla in:',
    opts:['x = 1','x = 0','x = a','x = e'],ans:0,
    exp:'log_a 1 = 0 per ogni base.'},
   {q:'La funzione sin x è positiva:',
-   opts:['nell\'intervallo (0, π) e nei traslati di 2π','sempre','solo per x &gt; 0','mai'],ans:0,
+   opts:['sempre','nell\'intervallo (0, π) e nei traslati di 2π','solo per x &gt; 0','mai'],ans:1,
    exp:'Il seno è positivo nel primo e secondo "quadrante", cioè in (0, π) + 2kπ.'},
   {q:'La funzione cos x è positiva:',
-   opts:['in (−π/2, π/2) e nei traslati di 2π','sempre','solo per x &gt; 0','mai'],ans:0,
+   opts:['sempre','solo per x &gt; 0','in (−π/2, π/2) e nei traslati di 2π','mai'],ans:2,
    exp:'Il coseno è positivo in (−π/2, π/2) + 2kπ.'},
   {q:'L\'esponenziale eˣ non ha zeri perché:',
-   opts:['è sempre positiva','è periodica','è pari','è decrescente'],ans:0,
+   opts:['è periodica','è pari','è sempre positiva','è decrescente'],ans:2,
    exp:'eˣ &gt; 0 sempre: non può annullarsi.'},
   {q:'Per studiare il segno di un prodotto f(x)·g(x):',
-   opts:['si combinano i segni dei fattori con la regola dei segni','si sommano i segni','si moltiplicano i domini','si calcola la derivata'],ans:0,
+   opts:['si sommano i segni','si combinano i segni dei fattori con la regola dei segni','si moltiplicano i domini','si calcola la derivata'],ans:1,
    exp:'Il prodotto è positivo se i fattori hanno lo stesso segno, negativo altrimenti.'},
   {q:'La funzione eˣ − 1 è positiva per:',
-   opts:['x &gt; 0','x &lt; 0','sempre','mai'],ans:0,
+   opts:['x &lt; 0','x &gt; 0','sempre','mai'],ans:1,
    exp:'eˣ − 1 &gt; 0 ⇔ eˣ &gt; 1 ⇔ x &gt; 0.'},
   {q:'La funzione e⁻ˣ ha segno:',
    opts:['sempre positivo','sempre negativo','positivo per x &lt; 0','dipendente da x'],ans:0,
@@ -1015,52 +1071,52 @@ seg:{
  ],
  calcolo:[
   {q:'Segno di f(x) = x² − 4.',
-   opts:['f &gt; 0 per |x| &lt; 2','f &gt; 0 per |x| &gt; 2','f &gt; 0 sempre','f &lt; 0 sempre'],ans:1,
+   opts:['f &gt; 0 per |x| &lt; 2','f &gt; 0 sempre','f &lt; 0 sempre','f &gt; 0 per |x| &gt; 2'],ans:3,
    exp:'(x − 2)(x + 2) &gt; 0 per x &lt; −2 ∨ x &gt; 2.'},
   {q:'Segno di f(x) = x(x − 3).',
-   opts:['&gt; 0 per 0 &lt; x &lt; 3','&gt; 0 per x &lt; 0 ∨ x &gt; 3','&lt; 0 per x &gt; 3','&gt; 0 sempre'],ans:1,
+   opts:['&gt; 0 per x &lt; 0 ∨ x &gt; 3','&gt; 0 per 0 &lt; x &lt; 3','&lt; 0 per x &gt; 3','&gt; 0 sempre'],ans:0,
    exp:'Zeri 0 e 3: prodotto positivo agli esterni.'},
   {q:'Segno di f(x) = (x − 1)/(x + 2).',
-   opts:['&gt; 0 per x &lt; −2 ∨ x &gt; 1','&gt; 0 per −2 &lt; x &lt; 1','&gt; 0 per x &gt; 1','&lt; 0 sempre'],ans:0,
+   opts:['&gt; 0 per −2 &lt; x &lt; 1','&gt; 0 per x &gt; 1','&lt; 0 sempre','&gt; 0 per x &lt; −2 ∨ x &gt; 1'],ans:3,
    exp:'N ≥ 0 ⇔ x ≥ 1; D &gt; 0 ⇔ x &gt; −2: positiva agli esterni.'},
   {q:'Segno di f(x) = (x + 1)/(x² − 4).',
-   opts:['&gt; 0 per −2 &lt; x &lt; −1 ∨ x &gt; 2','&gt; 0 per x &lt; −2 ∨ −1 &lt; x &lt; 2','&gt; 0 per x &gt; −1','&lt; 0 per x &gt; 2'],ans:0,
+   opts:['&gt; 0 per x &lt; −2 ∨ −1 &lt; x &lt; 2','&gt; 0 per −2 &lt; x &lt; −1 ∨ x &gt; 2','&gt; 0 per x &gt; −1','&lt; 0 per x &gt; 2'],ans:1,
    exp:'Punti −2, −1, 2: la tabella dei segni dà + in (−2, −1) e (2, +∞).'},
   {q:'Segno di f(x) = x³ − x.',
-   opts:['&gt; 0 per x &gt; 1','&gt; 0 per −1 &lt; x &lt; 0 ∨ x &gt; 1','&gt; 0 sempre','&lt; 0 per 0 &lt; x &lt; 1'],ans:1,
+   opts:['&gt; 0 per −1 &lt; x &lt; 0 ∨ x &gt; 1','&gt; 0 per x &gt; 1','&gt; 0 sempre','&lt; 0 per 0 &lt; x &lt; 1'],ans:0,
    exp:'x(x − 1)(x + 1): positivo in (−1, 0) ∪ (1, +∞).'},
   {q:'Segno di f(x) = √(x − 1) nel suo dominio.',
-   opts:['sempre &lt; 0','sempre &gt; 0','&gt; 0 per x &gt; 1, = 0 in x = 1','dipende dal segno di x'],ans:2,
+   opts:['sempre &lt; 0','sempre &gt; 0','dipende dal segno di x','&gt; 0 per x &gt; 1, = 0 in x = 1'],ans:3,
    exp:'Una radice quadrata è ≥ 0 nel dominio: nulla in x = 1, positiva per x &gt; 1.'},
   {q:'Segno di f(x) = (x² − 1)/x.',
    opts:['&gt; 0 per |x| &gt; 1','&gt; 0 per x &lt; −1 ∨ 0 &lt; x &lt; 1','&gt; 0 per −1 &lt; x &lt; 0 ∨ x &gt; 1','&gt; 0 per |x| &lt; 1'],ans:2,
    exp:'N ≥ 0 per |x| ≥ 1; D &gt; 0 per x &gt; 0: f &gt; 0 in (−1, 0) ∪ (1, +∞).'},
   {q:'Segno di f(x) = (x² + 1)/(x − 2).',
-   opts:['&gt; 0 per x &gt; 2','&gt; 0 per x &lt; 2','&gt; 0 sempre','non ha segno definito'],ans:0,
+   opts:['&gt; 0 per x &lt; 2','&gt; 0 sempre','non ha segno definito','&gt; 0 per x &gt; 2'],ans:3,
    exp:'N &gt; 0 sempre: f ha lo stesso segno di D = x − 2.'},
   {q:'Segno di f(x) = 1/(x² + 1).',
-   opts:['sempre &gt; 0','&gt; 0 per x &gt; 0','&gt; 0 per |x| &lt; 1','dipende'],ans:0,
+   opts:['&gt; 0 per x &gt; 0','sempre &gt; 0','&gt; 0 per |x| &lt; 1','dipende'],ans:1,
    exp:'N = 1 &gt; 0 e D = x² + 1 &gt; 0 ∀ x: f &gt; 0 ovunque.'},
   {q:'Segno di f(x) = √(x² − 9) nel suo dominio.',
-   opts:['&gt; 0 dove esiste, = 0 in x = ±3','&gt; 0 per x &gt; 3','&lt; 0 per x &lt; −3','sempre &lt; 0'],ans:0,
+   opts:['&gt; 0 per x &gt; 3','&gt; 0 dove esiste, = 0 in x = ±3','&lt; 0 per x &lt; −3','sempre &lt; 0'],ans:1,
    exp:'Dom: x ≤ −3 ∨ x ≥ 3: la radice è ≥ 0, nulla in ±3.'},
   {q:'Segno di f(x) = eˣ.',
    opts:['sempre &gt; 0','&gt; 0 solo per x &gt; 0','&lt; 0 per x &lt; 0','dipende'],ans:0,
    exp:'L\'esponenziale è positiva per ogni valore reale di x.'},
   {q:'Segno di f(x) = ln x.',
-   opts:['&gt; 0 per x &gt; 1, &lt; 0 per 0 &lt; x &lt; 1','&gt; 0 sempre','&lt; 0 sempre','&gt; 0 per x &gt; 0'],ans:0,
+   opts:['&gt; 0 sempre','&lt; 0 sempre','&gt; 0 per x &gt; 0','&gt; 0 per x &gt; 1, &lt; 0 per 0 &lt; x &lt; 1'],ans:3,
    exp:'ln x si annulla in x = 1: positivo dopo, negativo prima (nel dominio x &gt; 0).'},
   {q:'Segno di f(x) = eˣ − 1.',
-   opts:['&gt; 0 per x &gt; 0','&gt; 0 per x &lt; 0','&gt; 0 sempre','&lt; 0 sempre'],ans:0,
+   opts:['&gt; 0 per x &lt; 0','&gt; 0 sempre','&lt; 0 sempre','&gt; 0 per x &gt; 0'],ans:3,
    exp:'eˣ − 1 &gt; 0 ⇔ eˣ &gt; 1 ⇔ x &gt; 0.'},
   {q:'Per quali x è positiva f(x) = ln(x − 1)?',
-   opts:['x &gt; 2','x &gt; 1','x &gt; 0','1 &lt; x &lt; 2'],ans:0,
+   opts:['x &gt; 1','x &gt; 0','x &gt; 2','1 &lt; x &lt; 2'],ans:2,
    exp:'ln(x − 1) &gt; 0 ⇔ x − 1 &gt; 1 ⇔ x &gt; 2 (con x &gt; 1 per il dominio).'},
   {q:'Segno di f(x) = sin x nell\'intervallo (0, 2π).',
-   opts:['&gt; 0 in (0, π), &lt; 0 in (π, 2π)','&gt; 0 sempre','&lt; 0 sempre','&gt; 0 in (π, 2π)'],ans:0,
+   opts:['&gt; 0 sempre','&lt; 0 sempre','&gt; 0 in (0, π), &lt; 0 in (π, 2π)','&gt; 0 in (π, 2π)'],ans:2,
    exp:'Il seno è positivo nella prima metà del periodo, negativo nella seconda.'},
   {q:'Segno di f(x) = cos x nell\'intervallo (0, 2π).',
-   opts:['&gt; 0 in (0, π/2) ∪ (3π/2, 2π)','&gt; 0 sempre','&gt; 0 in (π/2, 3π/2)','&lt; 0 sempre'],ans:0,
+   opts:['&gt; 0 sempre','&gt; 0 in (π/2, 3π/2)','&gt; 0 in (0, π/2) ∪ (3π/2, 2π)','&lt; 0 sempre'],ans:2,
    exp:'Il coseno è positivo in (0, π/2) e (3π/2, 2π), negativo tra π/2 e 3π/2.'},
   {q:'Segno di f(x) = 2ˣ − 8.',
    opts:['&gt; 0 per x &gt; 3','&gt; 0 per x &lt; 3','&gt; 0 sempre','&lt; 0 sempre'],ans:0,
@@ -1069,10 +1125,10 @@ seg:{
    opts:['sempre &gt; 0','sempre &lt; 0','&gt; 0 solo per x &lt; 0','dipende'],ans:0,
    exp:'e⁻ˣ è un esponenziale: positiva per ogni x.'},
   {q:'Segno di f(x) = x · ln x nel suo dominio (x &gt; 0).',
-   opts:['&gt; 0 per x &gt; 1, &lt; 0 per 0 &lt; x &lt; 1','&gt; 0 sempre','&lt; 0 per x &gt; 1','&gt; 0 per 0 &lt; x &lt; 1'],ans:0,
+   opts:['&gt; 0 sempre','&lt; 0 per x &gt; 1','&gt; 0 per x &gt; 1, &lt; 0 per 0 &lt; x &lt; 1','&gt; 0 per 0 &lt; x &lt; 1'],ans:2,
    exp:'Nel dominio x &gt; 0 il fattore x è positivo: il segno di f segue ln x, positivo per x &gt; 1.'},
   {q:'Segno di f(x) = (eˣ − 1)/x.',
-   opts:['&gt; 0 per ogni x ≠ 0','&lt; 0 sempre','&gt; 0 solo per x &gt; 0','non determinabile'],ans:0,
+   opts:['&lt; 0 sempre','&gt; 0 solo per x &gt; 0','&gt; 0 per ogni x ≠ 0','non determinabile'],ans:2,
    exp:'Per x &gt; 0: numeratore e denominatore positivi; per x &lt; 0: entrambi negativi: f &gt; 0 in ogni caso.'}
  ]
 },
@@ -1085,46 +1141,46 @@ lim:{
    opts:['f(x₀) = 0','lim<sub>x→x₀</sub> f(x) = ±∞','x₀ è nel dominio','lim<sub>x→∞</sub> f(x) = x₀'],ans:1,
    exp:'Comportamento divergente verso x₀: tipico dei punti esclusi dal dominio.'},
   {q:'La retta y = mx + q è asintoto obliquo di f a +∞ se:',
-   opts:['m = lim<sub>x→+∞</sub> f(x)/x è finito ≠ 0 e q = lim<sub>x→+∞</sub> (f(x) − mx) è finito','f tende a mx + q','f(x) = mx + q per ogni x','q è la media dei limiti'],ans:0,
+   opts:['f tende a mx + q','f(x) = mx + q per ogni x','m = lim<sub>x→+∞</sub> f(x)/x è finito ≠ 0 e q = lim<sub>x→+∞</sub> (f(x) − mx) è finito','q è la media dei limiti'],ans:2,
    exp:'L\'asintoto obliquo esiste quando f(x) − (mx + q) → 0; m e q si trovano con i due limiti.'},
   {q:'Quando si può escludere a priori l\'asintoto obliquo a +∞?',
-   opts:['se esiste l\'asintoto orizzontale a +∞','sempre','se f è positiva','mai'],ans:0,
+   opts:['sempre','se f è positiva','se esiste l\'asintoto orizzontale a +∞','mai'],ans:2,
    exp:'Se f tende a un limite finito, niente asintoto obliquo dallo stesso lato.'},
   {q:'Per una razionale fratta P/Q con grado(P) = grado(Q):',
-   opts:['c\'è asintoto orizzontale y = rapporto dei coefficienti principali','c\'è asintoto obliquo','non ci sono asintoti','sempre y = 0'],ans:0,
+   opts:['c\'è asintoto obliquo','c\'è asintoto orizzontale y = rapporto dei coefficienti principali','non ci sono asintoti','sempre y = 0'],ans:1,
    exp:'I termini dominanti si rapportano dando il limite L.'},
   {q:'Per una razionale fratta con grado(P) = grado(Q) + 1:',
-   opts:['c\'è asintoto orizzontale','c\'è asintoto obliquo','non ci sono asintoti','c\'è solo asintoto verticale'],ans:1,
+   opts:['c\'è asintoto orizzontale','non ci sono asintoti','c\'è solo asintoto verticale','c\'è asintoto obliquo'],ans:3,
    exp:'Il quoziente polinomiale è di primo grado: asintoto obliquo.'},
   {q:'Discontinuità di I specie (salto):',
-   opts:['limiti laterali finiti uguali','limiti laterali finiti ma diversi','almeno un limite infinito','funzione non definita'],ans:1,
+   opts:['limiti laterali finiti uguali','almeno un limite infinito','limiti laterali finiti ma diversi','funzione non definita'],ans:2,
    exp:'Salto: limite sinistro e destro finiti ma diversi.'},
   {q:'Discontinuità di II specie:',
-   opts:['limiti laterali finiti uguali','almeno un limite laterale infinito o non esistente','è un punto isolato','f è derivabile'],ans:1,
+   opts:['limiti laterali finiti uguali','è un punto isolato','almeno un limite laterale infinito o non esistente','f è derivabile'],ans:2,
    exp:'Caratterizzata da divergenza o non esistenza dei limiti laterali.'},
   {q:'Discontinuità eliminabile (III specie):',
-   opts:['limiti laterali finiti e uguali, ma f non definita lì o con valore diverso','limiti diversi','limiti infiniti','funzione costante'],ans:0,
+   opts:['limiti diversi','limiti laterali finiti e uguali, ma f non definita lì o con valore diverso','limiti infiniti','funzione costante'],ans:1,
    exp:'Si "ripara" ridefinendo f in x₀ pari al valore del limite.'},
   {q:'Per ricavare m dell\'asintoto obliquo si usa il limite:',
-   opts:['lim<sub>x→±∞</sub> f(x)','lim<sub>x→±∞</sub> f(x)/x','lim<sub>x→0</sub> f(x)/x','lim<sub>x→±∞</sub> f(x)·x'],ans:1,
+   opts:['lim<sub>x→±∞</sub> f(x)','lim<sub>x→0</sub> f(x)/x','lim<sub>x→±∞</sub> f(x)·x','lim<sub>x→±∞</sub> f(x)/x'],ans:3,
    exp:'m è la pendenza limite: f(x)/x → m.'},
   {q:'Quanto vale lim<sub>x→+∞</sub> eˣ?',
-   opts:['0','1','+∞','−∞'],ans:2,
+   opts:['+∞','0','1','−∞'],ans:0,
    exp:'L\'esponenziale cresce illimitatamente per x → +∞.'},
   {q:'Quanto vale lim<sub>x→−∞</sub> eˣ?',
-   opts:['0','1','+∞','−∞'],ans:0,
+   opts:['1','0','+∞','−∞'],ans:1,
    exp:'Per x → −∞ l\'esponenziale tende a 0: dà l\'asintoto orizzontale y = 0.'},
   {q:'La funzione eˣ ha asintoto orizzontale:',
-   opts:['y = 0, soltanto a −∞','y = 1','y = 0 a +∞','nessuno'],ans:0,
+   opts:['y = 1','y = 0 a +∞','y = 0, soltanto a −∞','nessuno'],ans:2,
    exp:'eˣ → 0 per x → −∞: y = 0 è asintoto orizzontale solo da quel lato.'},
   {q:'Quanto vale lim<sub>x→0⁺</sub> ln x?',
-   opts:['0','+∞','−∞','1'],ans:2,
+   opts:['0','−∞','+∞','1'],ans:1,
    exp:'Avvicinandosi a 0 da destra, il logaritmo diverge a −∞.'},
   {q:'La funzione ln x ha asintoto verticale:',
-   opts:['x = 0','x = 1','y = 0','nessuno'],ans:0,
+   opts:['x = 1','y = 0','nessuno','x = 0'],ans:3,
    exp:'lim<sub>x→0⁺</sub> ln x = −∞ ⇒ x = 0 è asintoto verticale.'},
   {q:'Quanto vale lim<sub>x→+∞</sub> ln x?',
-   opts:['0','un valore finito','+∞','−∞'],ans:2,
+   opts:['0','+∞','un valore finito','−∞'],ans:1,
    exp:'Il logaritmo cresce illimitatamente, anche se molto lentamente.'},
   {q:'La funzione tan x ha asintoti verticali in:',
    opts:['x = kπ','x = π/2 + kπ','x = 0','non ne ha'],ans:1,
@@ -1133,39 +1189,39 @@ lim:{
    opts:['0','non esiste, perché oscilla','+∞','1'],ans:1,
    exp:'Il seno continua a oscillare tra −1 e 1: il limite non esiste.'},
   {q:'La funzione e⁻ˣ ha asintoto orizzontale:',
-   opts:['y = 0, a +∞','y = 0, a −∞','y = 1','nessuno'],ans:0,
+   opts:['y = 0, a −∞','y = 1','nessuno','y = 0, a +∞'],ans:3,
    exp:'e⁻ˣ → 0 per x → +∞: y = 0 è asintoto orizzontale a +∞.'},
   {q:'Per x → +∞, confrontando eˣ con una potenza xⁿ:',
-   opts:['eˣ prevale, cresce più rapidamente','xⁿ prevale','crescono allo stesso modo','entrambe tendono a 0'],ans:0,
+   opts:['xⁿ prevale','crescono allo stesso modo','eˣ prevale, cresce più rapidamente','entrambe tendono a 0'],ans:2,
    exp:'L\'esponenziale cresce più velocemente di qualunque potenza.'}
  ],
  calcolo:[
   {q:'lim<sub>x→+∞</sub> (3x + 1)/(x − 2) =',
-   opts:['0','3','+∞','indeterminato'],ans:1,
+   opts:['3','0','+∞','indeterminato'],ans:0,
    exp:'Polinomi di pari grado: rapporto dei coefficienti principali = 3.'},
   {q:'lim<sub>x→+∞</sub> (x² + 1)/(x³ − x) =',
    opts:['0','1','+∞','−∞'],ans:0,
    exp:'Grado del denominatore maggiore: il limite è 0.'},
   {q:'lim<sub>x→+∞</sub> (x³ − 5x)/(x + 1) =',
-   opts:['0','5','+∞','1'],ans:2,
+   opts:['0','+∞','5','1'],ans:1,
    exp:'Grado del numeratore maggiore: il limite è +∞.'},
   {q:'lim<sub>x→2⁺</sub> 1/(x − 2) =',
-   opts:['0','+∞','−∞','indeterminato'],ans:1,
+   opts:['0','−∞','+∞','indeterminato'],ans:2,
    exp:'x − 2 → 0⁺ ⇒ 1/(0⁺) = +∞.'},
   {q:'lim<sub>x→2⁻</sub> 1/(x − 2) =',
-   opts:['0','+∞','−∞','indeterminato'],ans:2,
+   opts:['0','−∞','+∞','indeterminato'],ans:1,
    exp:'x − 2 → 0⁻ ⇒ 1/(0⁻) = −∞.'},
   {q:'Tipo di discontinuità di f(x) = 1/(x − 2) in x = 2?',
-   opts:['I specie (salto)','II specie','III specie (eliminabile)','non è discontinua'],ans:1,
+   opts:['II specie','I specie (salto)','III specie (eliminabile)','non è discontinua'],ans:0,
    exp:'I limiti laterali sono ±∞: II specie, con asintoto verticale.'},
   {q:'lim<sub>x→1</sub> (x² − 1)/(x − 1) =',
-   opts:['0','1','2','indeterminato'],ans:2,
+   opts:['0','2','1','indeterminato'],ans:1,
    exp:'(x² − 1)/(x − 1) = x + 1 → 2.'},
   {q:'In x = 1 la funzione f(x) = (x² − 1)/(x − 1) ha discontinuità:',
    opts:['di I specie','di II specie','di III specie (eliminabile)','di IV specie'],ans:2,
    exp:'Limite finito (2) ma f(1) non definita: III specie.'},
   {q:'Per f(x) = (x² + 1)/x, l\'asintoto a +∞ è:',
-   opts:['orizzontale y = 1','obliquo y = x','verticale x = 0','non ne ha'],ans:1,
+   opts:['obliquo y = x','orizzontale y = 1','verticale x = 0','non ne ha'],ans:0,
    exp:'f(x) = x + 1/x: m = 1, q = 0 ⇒ asintoto obliquo y = x.'},
   {q:'In x = 0 la funzione f(x) = (x² + 1)/x ha:',
    opts:['punto regolare','asintoto orizzontale','asintoto verticale, discontinuità di II specie','discontinuità eliminabile'],ans:2,
@@ -1174,31 +1230,31 @@ lim:{
    opts:['0','1','+∞','−∞'],ans:2,
    exp:'L\'esponenziale diverge a +∞.'},
   {q:'lim<sub>x→−∞</sub> eˣ =',
-   opts:['0','+∞','−∞','1'],ans:0,
+   opts:['+∞','−∞','1','0'],ans:3,
    exp:'Per x → −∞ l\'esponenziale tende a 0.'},
   {q:'lim<sub>x→0⁺</sub> ln x =',
    opts:['0','−∞','+∞','1'],ans:1,
    exp:'Il logaritmo diverge a −∞ avvicinandosi a 0 da destra.'},
   {q:'lim<sub>x→+∞</sub> ln x =',
-   opts:['0','1','+∞','−∞'],ans:2,
+   opts:['0','+∞','1','−∞'],ans:1,
    exp:'Il logaritmo cresce illimitatamente.'},
   {q:'lim<sub>x→+∞</sub> e⁻ˣ =',
    opts:['0','+∞','1','−∞'],ans:0,
    exp:'e⁻ˣ = 1/eˣ → 0 per x → +∞.'},
   {q:'lim<sub>x→+∞</sub> 2ˣ =',
-   opts:['0','+∞','2','1'],ans:1,
+   opts:['0','2','1','+∞'],ans:3,
    exp:'Base &gt; 1: l\'esponenziale diverge a +∞.'},
   {q:'lim<sub>x→−∞</sub> 2ˣ =',
    opts:['0','+∞','2','−∞'],ans:0,
    exp:'Base &gt; 1: per x → −∞ tende a 0.'},
   {q:'lim<sub>x→(π/2)⁻</sub> tan x =',
-   opts:['0','+∞','−∞','1'],ans:1,
+   opts:['0','−∞','1','+∞'],ans:3,
    exp:'cos x → 0⁺ e sin x → 1: tan x → +∞.'},
   {q:'Asintoto orizzontale di f(x) = eˣ + 3 per x → −∞:',
-   opts:['y = 3','y = 0','y = +∞','nessuno'],ans:0,
+   opts:['y = 0','y = +∞','nessuno','y = 3'],ans:3,
    exp:'eˣ → 0 ⇒ f(x) → 3: asintoto orizzontale y = 3.'},
   {q:'Per f(x) = ln x, in x = 0 si ha:',
-   opts:['un asintoto verticale','un asintoto orizzontale','un punto regolare','una discontinuità eliminabile'],ans:0,
+   opts:['un asintoto orizzontale','un punto regolare','un asintoto verticale','una discontinuità eliminabile'],ans:2,
    exp:'lim<sub>x→0⁺</sub> ln x = −∞: x = 0 è asintoto verticale.'}
  ]
 },
@@ -1208,69 +1264,69 @@ der:{
    opts:['f(x₀)/x₀','lim<sub>h→0</sub> [f(x₀+h) − f(x₀)] / h','f(x₀) − f(0)','f(x₀)²'],ans:1,
    exp:'È il limite del rapporto incrementale: misura la pendenza della tangente.'},
   {q:'La derivata di una costante k è:',
-   opts:['k','1','0','indeterminata'],ans:2,
+   opts:['k','0','1','indeterminata'],ans:1,
    exp:'Una costante non varia: derivata nulla.'},
   {q:'La derivata di xⁿ è:',
-   opts:['xⁿ','n·xⁿ⁻¹','xⁿ/n','n·xⁿ⁺¹'],ans:1,
+   opts:['n·xⁿ⁻¹','xⁿ','xⁿ/n','n·xⁿ⁺¹'],ans:0,
    exp:'Regola della potenza: D(xⁿ) = n·xⁿ⁻¹.'},
   {q:'La derivata di un prodotto f(x)·g(x) è:',
    opts:['f\'(x)·g\'(x)','f\'(x)·g(x) + f(x)·g\'(x)','f(x) + g\'(x)','f\'(x)/g(x)'],ans:1,
    exp:'Regola di Leibniz: D(fg) = f\'g + fg\'.'},
   {q:'Se f\'(x) &gt; 0 su un intervallo I, allora f in I è:',
-   opts:['decrescente','costante','crescente','non monotòna'],ans:2,
+   opts:['decrescente','crescente','costante','non monotòna'],ans:1,
    exp:'Pendenza positiva ⇒ funzione crescente.'},
   {q:'Un punto x₀ è "stazionario" se:',
-   opts:['f(x₀) = 0','f\'(x₀) = 0','f"(x₀) = 0','x₀ = 0'],ans:1,
+   opts:['f\'(x₀) = 0','f(x₀) = 0','f"(x₀) = 0','x₀ = 0'],ans:0,
    exp:'In un punto stazionario la derivata prima si annulla: tangente orizzontale.'},
   {q:'Se f\' ha segno + a sinistra di x₀ e − a destra, x₀ è:',
-   opts:['massimo relativo','minimo relativo','flesso a tangente orizzontale','flesso obliquo'],ans:0,
+   opts:['minimo relativo','massimo relativo','flesso a tangente orizzontale','flesso obliquo'],ans:1,
    exp:'Cambio da crescenza a decrescenza: massimo relativo.'},
   {q:'Se f\' ha segno − a sinistra di x₀ e + a destra, x₀ è:',
-   opts:['massimo relativo','minimo relativo','flesso a tangente orizzontale','asintoto'],ans:1,
+   opts:['massimo relativo','flesso a tangente orizzontale','minimo relativo','asintoto'],ans:2,
    exp:'Cambio da decrescenza a crescenza: minimo relativo.'},
   {q:'Se f\'(x₀) = 0 ma f\' NON cambia segno in x₀, allora x₀ è:',
-   opts:['massimo','minimo','flesso a tangente orizzontale','asintoto verticale'],ans:2,
+   opts:['massimo','flesso a tangente orizzontale','minimo','asintoto verticale'],ans:1,
    exp:'Tangente orizzontale senza cambio di monotonia: flesso a tangente orizzontale.'},
   {q:'La derivata della funzione composta f(g(x)) è:',
-   opts:['f\'(g(x))','f\'(g(x))·g\'(x)','f\'(x)·g\'(x)','f(g\'(x))'],ans:1,
+   opts:['f\'(g(x))','f\'(x)·g\'(x)','f(g\'(x))','f\'(g(x))·g\'(x)'],ans:3,
    exp:'Regola della catena: si deriva da fuori a dentro.'},
   {q:'La derivata di sin x è:',
-   opts:['cos x','−cos x','−sin x','sin x'],ans:0,
+   opts:['−cos x','cos x','−sin x','sin x'],ans:1,
    exp:'D(sin x) = cos x.'},
   {q:'La derivata di cos x è:',
    opts:['sin x','−sin x','cos x','−cos x'],ans:1,
    exp:'D(cos x) = −sin x.'},
   {q:'La derivata di eˣ è:',
-   opts:['eˣ','x·eˣ⁻¹','eˣ/x','1'],ans:0,
+   opts:['x·eˣ⁻¹','eˣ','eˣ/x','1'],ans:1,
    exp:'L\'esponenziale eˣ coincide con la propria derivata.'},
   {q:'La derivata di ln x è:',
-   opts:['1/x','ln x','x','−1/x²'],ans:0,
+   opts:['ln x','x','1/x','−1/x²'],ans:2,
    exp:'D(ln x) = 1/x.'},
   {q:'La derivata di tan x è:',
-   opts:['1/cos²x','1/sin²x','−1/cos²x','cos²x'],ans:0,
+   opts:['1/sin²x','−1/cos²x','cos²x','1/cos²x'],ans:3,
    exp:'D(tan x) = 1/cos²x (uguale anche a 1 + tan²x).'},
   {q:'La derivata di aˣ è:',
    opts:['aˣ','aˣ·ln a','x·aˣ⁻¹','aˣ/x'],ans:1,
    exp:'D(aˣ) = aˣ·ln a; per a = e si riduce a eˣ.'},
   {q:'La derivata di log_a x è:',
-   opts:['1/(x·ln a)','1/x','ln a / x','log_a x'],ans:0,
+   opts:['1/x','1/(x·ln a)','ln a / x','log_a x'],ans:1,
    exp:'D(log_a x) = 1/(x·ln a); per a = e si riduce a 1/x.'},
   {q:'La funzione eˣ ha la proprietà notevole che:',
-   opts:['coincide con la sua derivata','ha derivata nulla','è periodica','non è derivabile'],ans:0,
+   opts:['ha derivata nulla','è periodica','non è derivabile','coincide con la sua derivata'],ans:3,
    exp:'D(eˣ) = eˣ: è l\'unica funzione (a meno di costanti) con questa proprietà.'},
   {q:'Per classificare un punto stazionario si studia:',
-   opts:['il segno di f\' attorno al punto','il dominio','il segno di f','il limite all\'infinito'],ans:0,
+   opts:['il dominio','il segno di f\' attorno al punto','il segno di f','il limite all\'infinito'],ans:1,
    exp:'Il cambio di segno di f\' distingue massimi, minimi e flessi.'},
   {q:'Se f\'(x) &lt; 0 su un intervallo I, allora f in I è:',
-   opts:['crescente','decrescente','costante','periodica'],ans:1,
+   opts:['decrescente','crescente','costante','periodica'],ans:0,
    exp:'Pendenza negativa ⇒ funzione decrescente.'}
  ],
  calcolo:[
   {q:'Derivata di f(x) = 3x⁴ − 2x² + 5.',
-   opts:['12x³ − 4x','12x³ − 4x + 5','4x³ − 2x','3x³ − 2x'],ans:0,
+   opts:['12x³ − 4x + 5','12x³ − 4x','4x³ − 2x','3x³ − 2x'],ans:1,
    exp:'D(3x⁴) = 12x³; D(−2x²) = −4x; D(5) = 0.'},
   {q:'Derivata di f(x) = (x² + 1)(x − 2).',
-   opts:['2x(x − 2)','3x² − 4x + 1','x² − 2x + 1','2x − 2'],ans:1,
+   opts:['2x(x − 2)','x² − 2x + 1','3x² − 4x + 1','2x − 2'],ans:2,
    exp:'Regola del prodotto: 2x(x − 2) + (x² + 1) = 3x² − 4x + 1.'},
   {q:'Derivata di f(x) = (2x + 1)/(x − 3).',
    opts:['−7/(x − 3)²','2/(x − 3)','1/(x − 3)²','7/(x − 3)²'],ans:0,
@@ -1279,52 +1335,52 @@ der:{
    opts:['1/(2√(x² + 1))','x/√(x² + 1)','2x/√(x² + 1)','√(2x)'],ans:1,
    exp:'Catena: 2x/(2√(x² + 1)) = x/√(x² + 1).'},
   {q:'f(x) = x³ − 3x. Punti stazionari?',
-   opts:['x = 0','x = ±1','x = ±√3','x = ±3'],ans:1,
+   opts:['x = 0','x = ±√3','x = ±1','x = ±3'],ans:2,
    exp:'f\'(x) = 3x² − 3 = 0 ⇒ x = ±1.'},
   {q:'f(x) = x³ − 3x. Natura di x = −1?',
-   opts:['massimo','minimo','flesso','asintoto'],ans:0,
+   opts:['minimo','flesso','asintoto','massimo'],ans:3,
    exp:'f\' passa da + a − in x = −1: massimo relativo.'},
   {q:'f(x) = x³ − 3x. Natura di x = 1?',
    opts:['massimo','minimo','flesso','asintoto'],ans:1,
    exp:'f\' passa da − a + in x = 1: minimo relativo.'},
   {q:'f(x) = x³. Cosa accade in x = 0?',
-   opts:['massimo','minimo','flesso a tangente orizzontale','salto'],ans:2,
+   opts:['massimo','minimo','salto','flesso a tangente orizzontale'],ans:3,
    exp:'f\'(x) = 3x² ≥ 0 senza cambio di segno: flesso a tangente orizzontale.'},
   {q:'f(x) = x⁴. Cosa accade in x = 0?',
-   opts:['massimo','minimo','flesso a tangente orizzontale','asintoto'],ans:1,
+   opts:['massimo','flesso a tangente orizzontale','minimo','asintoto'],ans:2,
    exp:'f\' = 4x³ cambia da − a + in x = 0: minimo.'},
   {q:'f(x) = x² − 4x + 3. Coordinate del vertice (minimo)?',
-   opts:['(2, −1)','(1, 0)','(2, 0)','(0, 3)'],ans:0,
+   opts:['(1, 0)','(2, 0)','(2, −1)','(0, 3)'],ans:2,
    exp:'f\' = 2x − 4 = 0 ⇒ x = 2; f(2) = −1.'},
   {q:'Derivata di f(x) = eˣ + x².',
-   opts:['eˣ + 2x','eˣ + x','x·eˣ⁻¹ + 2x','eˣ'],ans:0,
+   opts:['eˣ + x','x·eˣ⁻¹ + 2x','eˣ + 2x','eˣ'],ans:2,
    exp:'D(eˣ) = eˣ; D(x²) = 2x.'},
   {q:'Derivata di f(x) = ln x + 3x.',
-   opts:['1/x + 3','1/x','ln x + 3','x + 3'],ans:0,
+   opts:['1/x','1/x + 3','ln x + 3','x + 3'],ans:1,
    exp:'D(ln x) = 1/x; D(3x) = 3.'},
   {q:'Derivata di f(x) = x · eˣ.',
-   opts:['eˣ','eˣ(1 + x)','x · eˣ','eˣ − x'],ans:1,
+   opts:['eˣ','x · eˣ','eˣ − x','eˣ(1 + x)'],ans:3,
    exp:'Prodotto: 1·eˣ + x·eˣ = eˣ(1 + x).'},
   {q:'Derivata di f(x) = sin x + cos x.',
-   opts:['cos x − sin x','cos x + sin x','−cos x − sin x','sin x − cos x'],ans:0,
+   opts:['cos x + sin x','cos x − sin x','−cos x − sin x','sin x − cos x'],ans:1,
    exp:'D(sin x) = cos x; D(cos x) = −sin x.'},
   {q:'Derivata di f(x) = e^(2x).',
-   opts:['2e^(2x)','e^(2x)','2x · e^(2x)','e^(2x)/2'],ans:0,
+   opts:['e^(2x)','2x · e^(2x)','2e^(2x)','e^(2x)/2'],ans:2,
    exp:'Catena: D(e^(2x)) = e^(2x)·2 = 2e^(2x).'},
   {q:'Derivata di f(x) = ln(x² + 1).',
    opts:['2x/(x² + 1)','1/(x² + 1)','2x','1/(2x)'],ans:0,
    exp:'Catena: D(ln u) = u\'/u con u = x² + 1, u\' = 2x.'},
   {q:'Derivata di f(x) = sin(3x).',
-   opts:['3cos(3x)','cos(3x)','−3cos(3x)','3sin(3x)'],ans:0,
+   opts:['cos(3x)','−3cos(3x)','3cos(3x)','3sin(3x)'],ans:2,
    exp:'Catena: D(sin(3x)) = cos(3x)·3 = 3cos(3x).'},
   {q:'f(x) = eˣ − x. Punto stazionario?',
-   opts:['x = 0','x = 1','x = e','nessuno'],ans:0,
+   opts:['x = 1','x = e','x = 0','nessuno'],ans:2,
    exp:'f\'(x) = eˣ − 1 = 0 ⇒ eˣ = 1 ⇒ x = 0.'},
   {q:'f(x) = eˣ − x. Natura del punto stazionario x = 0?',
-   opts:['massimo','minimo','flesso','asintoto'],ans:1,
+   opts:['massimo','flesso','minimo','asintoto'],ans:2,
    exp:'f\' = eˣ − 1: negativa per x &lt; 0, positiva per x &gt; 0 ⇒ minimo.'},
   {q:'f(x) = ln x − x. Natura del punto stazionario x = 1?',
-   opts:['massimo','minimo','flesso','nessuna'],ans:0,
+   opts:['minimo','flesso','nessuna','massimo'],ans:3,
    exp:'f\' = 1/x − 1: positiva per 0 &lt; x &lt; 1, negativa per x &gt; 1 ⇒ massimo.'}
  ]
 }
@@ -1347,9 +1403,9 @@ function renderQuiz(s){
   const el=document.getElementById('qz-'+s); if(!el) return;
   const st=qState[s], kind=st.active, sub=st[kind], qs=Q[s][kind];
   const total=qs.length;
-  const tabsHTML=`<div class="qz-tabs">
-    <button class="qz-tab ${kind==='teoria'?'active':''}" onclick="switchQuiz('${s}','teoria')">📘 Quiz Teoria</button>
-    <button class="qz-tab ${kind==='calcolo'?'active':''}" onclick="switchQuiz('${s}','calcolo')">🧮 Quiz Calcolo</button>
+  const tabsHTML=`<div class="qz-tabs" role="tablist">
+    <button class="qz-tab ${kind==='teoria'?'active':''}" role="tab" aria-selected="${kind==='teoria'}" onclick="switchQuiz('${s}','teoria')">Quiz Teoria</button>
+    <button class="qz-tab ${kind==='calcolo'?'active':''}" role="tab" aria-selected="${kind==='calcolo'}" onclick="switchQuiz('${s}','calcolo')">Quiz Calcolo</button>
   </div>`;
 
   let body;
@@ -1358,14 +1414,14 @@ function renderQuiz(s){
   } else if(sub.done){
     const pct=sub.score/total;
     const mi=pct<=.4?0:pct<=.6?1:pct<=.8?2:pct<1?3:4;
-    const icons=['😕','🙂','😊','🎉','🏆'];
+    const icons=['','','','',''];
     const msgs=['Da rivedere — rileggi la teoria e riprova.','Sufficiente — qualche lacuna da colmare.','Buono — ancora un po\' e arrivi al massimo!','Ottimo risultato!','Perfetto — nessun errore!'];
     body=`<div class="quiz-done">
       <span class="quiz-score-big">${icons[mi]} ${sub.score}/${total}</span>
       <p class="quiz-msg">${msgs[mi]}</p>
       <div class="quiz-actions">
-        <button class="quiz-review alt" onclick="reviewQuiz('${s}')">🔍 Rivedi risposte</button>
-        <button class="quiz-restart" onclick="restartQuiz('${s}')">🔄 Ricomincia</button>
+        <button class="quiz-review alt" onclick="reviewQuiz('${s}')">Rivedi risposte</button>
+        <button class="quiz-restart" onclick="restartQuiz('${s}')">Ricomincia</button>
       </div>
     </div>`;
   } else {
@@ -1381,7 +1437,7 @@ function renderQuiz(s){
     <button class="quiz-next" id="qnxt-${s}" style="display:none" onclick="nextQuiz('${s}')">${sub.idx+1<total?'Prossima domanda →':'Vedi il risultato finale →'}</button>`;
   }
 
-  el.innerHTML=`<div class="card"><h2>🧩 Quiz · ${kind==='teoria'?'Teoria':'Calcolo'}</h2>${tabsHTML}${body}</div>`;
+  el.innerHTML=`<div class="card"><h2>Quiz · ${kind==='teoria'?'Teoria':'Calcolo'}</h2>${tabsHTML}${body}</div>`;
 }
 
 function renderReview(s,kind,qs,sub){
@@ -1399,7 +1455,7 @@ function renderReview(s,kind,qs,sub){
     ${items}
     <div class="quiz-actions" style="margin-top:.8rem">
       <button class="quiz-review alt" onclick="closeReview('${s}')">← Torna al risultato</button>
-      <button class="quiz-restart" onclick="restartQuiz('${s}')">🔄 Ricomincia</button>
+      <button class="quiz-restart" onclick="restartQuiz('${s}')">Ricomincia</button>
     </div>`;
 }
 
@@ -1423,7 +1479,7 @@ function answerQuiz(s,chosen){
   const exp=document.getElementById(`qexp-${s}`);
   exp.style.display='';
   exp.className=`quiz-exp ${correct?'ok':'no'}`;
-  exp.innerHTML=`<strong>${correct?'✓ Corretto!':'✗ Sbagliato.'}</strong> ${q.exp}`;
+  exp.innerHTML=`<strong>${correct?'Corretto!':'Sbagliato.'}</strong> ${q.exp}`;
   document.getElementById(`qnxt-${s}`).style.display='';
 }
 
@@ -1451,5 +1507,6 @@ function closeReview(s){
 
 SECTIONS.forEach(renderQuiz);
 </script>
+<script>(function(){var root=document.documentElement,btn=document.getElementById("themeBtn");if(!btn)return;var SUN="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='4'/><path d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/></svg>",MOON="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/></svg>";function cur(){return root.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");}function paint(){var d=cur()==="dark";btn.innerHTML=d?SUN:MOON;btn.setAttribute("aria-label",d?"Passa al tema chiaro":"Passa al tema scuro");}window.toggleTheme=function(){var n=cur()==="dark"?"light":"dark";root.setAttribute("data-theme",n);try{localStorage.setItem("sf-theme",n);}catch(e){}paint();};paint();try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",paint);}catch(e){}})();</script>
 </body>
 </html>
